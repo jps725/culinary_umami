@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request, session
 from app.models import (db, Recipe, Measurement_Type, Image,
                         Ingredient, Instruction)
-from app.forms import (RecipeForm, IngredientForm, CommentForm,
-                       InstructionForm, MeasurementTypeForm, ImageForm)
+# from app.forms import (RecipeForm, IngredientForm, CommentForm,
+#                        InstructionForm, MeasurementTypeForm, ImageForm)
 
 
 recipe_routes = Blueprint('recipe', __name__)
@@ -87,7 +87,6 @@ def recipe():
 @ recipe_routes.route('/<int:id>')
 def get_recipe(id):
     recipe = Recipe.query.get(id)
-    print("____________________recipes", recipe.to_dict())
 
     return recipe.to_dict()
 
