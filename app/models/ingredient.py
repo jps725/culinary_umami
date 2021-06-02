@@ -5,7 +5,7 @@ class Ingredient(db.Model):
     __tablename__ = "ingredients"
 
     id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, nullable=False)
+    recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
     ingredient = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     measurement_type_id = db.Column(
