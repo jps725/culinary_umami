@@ -18,6 +18,4 @@ class Image(db.Model):
             "user_id": self.user_id,
             "recipe_id": self.recipe_id,
             "image_url": self.image_url,
-            "user": self.user,
-            "recipe": self.recipe
         }

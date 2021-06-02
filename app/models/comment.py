@@ -22,6 +22,4 @@ class Comment(db.Model):
             "review": self.review,
             "recipe_id": self.recipe_id,
             "user_id": self.user_id,
-            "recipe": self.recipe,
-            "user": self.user
         }
