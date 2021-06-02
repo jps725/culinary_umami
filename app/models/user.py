@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
             "recipes": self.recipes,
             "comments": self.comments
         }

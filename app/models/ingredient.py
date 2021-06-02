@@ -8,9 +8,8 @@ class Ingredient(db.Model):
     recipe_id = db.Column(db.Integer, nullable=False)
     ingredient = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    measurement_type_id = db.Column(db.Integer, nullable=False,
-                                    db.ForeignKey("measurement_types.id"))
-
+    measurement_type_id = db.Column(
+        db.Integer, db.ForeignKey("measurement_types.id"))
     recipe = db.relationship("Recipe", back_populates="ingredients")
     measurement_type = db.relationship("Measurement_Type")
 
