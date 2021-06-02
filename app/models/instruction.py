@@ -9,7 +9,7 @@ class Instruction(db.Model):
     method = db.Column(db.String, nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
 
-    recipe = db.relationship("Instruction", back_populates="instructions")
+    recipe = db.relationship("Recipe", back_populates="instructions")
 
     def to_dict(self):
         return {

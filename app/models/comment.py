@@ -1,5 +1,5 @@
 from .db import db
-import datetime
+from datetime import date
 
 
 class Comment(db.Model):
@@ -10,7 +10,7 @@ class Comment(db.Model):
     review = db.Column(db.String(500))
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=date.today())
 
     recipe = db.relationship("Recipe", back_populates="comments")
     user = db.relationship("User", back_populates="comments")
