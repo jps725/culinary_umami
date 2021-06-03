@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/splash" exact={true}>
+        <Route path="/" exact={true}>
           <SplashPage />
         </Route>
         <ProtectedRoute path="/profile" exact={true}>
