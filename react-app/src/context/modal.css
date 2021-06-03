@@ -1,13 +1,11 @@
 #modal {
   position: fixed;
-  top: 0;
+  top: 20em;
   right: 0;
   left: 0;
-  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 #modal-background {
@@ -16,10 +14,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  /* background-color: rgba(17, 138, 178, 0.7); */
+  backdrop-filter: blur(4px);
 }
 
 #modal-content {
   position: absolute;
-  background-color: rgba(233, 204, 37);
 }

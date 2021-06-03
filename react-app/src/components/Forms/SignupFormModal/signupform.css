@@ -1,4 +1,4 @@
-.login__form {
+.signup__form {
   max-width: 100%;
   max-height: 100%;
   font-family: "Montserrat Alternates", sans-serif;
@@ -8,36 +8,36 @@
   padding: 1em;
   border-radius: 8px;
   background-color: rgba(255, 209, 102, 0.9);
-  /* background-color: rgba(6, 214, 160, 0.85); */
 }
 
-.login__form fieldset {
+.signup__form legend {
+  font-size: 2em;
+}
+.signup__form fieldset {
   border-radius: 8px;
 }
 
-.login__form legend {
-  font-size: 2em;
-}
-.login__form input {
+.signup__form input {
   margin: 0.5em;
   padding: 0.75em;
   width: 15em;
 }
-
-.login__form div {
+.signup__form div {
   margin-bottom: 1em;
 }
 
-.login__form label {
+.signup__form label {
   display: inline-block;
   width: 5em;
   text-align: center;
 }
-#login__button--div {
+
+#signup__button--div {
   display: flex;
   justify-content: center;
 }
-.login__form button {
+
+.signup__form button {
   background-color: transparent;
   border: 1px solid black;
   cursor: pointer;
