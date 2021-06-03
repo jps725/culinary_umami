@@ -1,0 +1,69 @@
+html {
+  background: url("../images/pexels-karolina-grabowska-4199098.jpeg") no-repeat
+    center center fixed;
+  background-size: cover;
+}
+
+.splash__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.splash__title {
+  font-family: "Architects Daughter", cursive;
+  font-size: 7em;
+  align-self: center;
+  text-align: center;
+  margin-top: 0.5em;
+  width: fit-content;
+  color: #073b4c;
+}
+
+.splash__tagline {
+  font-family: "Architects Daughter", cursive;
+  margin-top: 0.5em;
+  font-size: 2em;
+  align-self: center;
+  text-align: center;
+  color: #073b4c;
+}
+
+.splash__links {
+  display: flex;
+  align-self: center;
+  margin-top: 3em;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.splash__login--link button {
+  text-decoration: none;
+  font-size: 3em;
+  font-family: "Indie Flower", cursive;
+  color: #06d6a0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.splash__signup--link button {
+  text-decoration: none;
+  margin-left: 1em;
+  font-size: 3em;
+  font-family: "Indie Flower", cursive;
+  color: #118ab2;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.splash__demo--link button {
+  text-decoration: none;
+  margin-left: 1em;
+  font-size: 3em;
+  font-family: "Indie Flower", cursive;
+  color: #ef476f;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
