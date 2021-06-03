@@ -29,7 +29,7 @@ function App() {
           <SplashPage />
         </Route>
         <ProtectedRoute path="/profile" exact={true}>
-          <Profile />
+          <Profile user={user} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Image
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -66,10 +66,22 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            image_url=form.data['imageUrl'],
             password=form.data['password']
         )
         db.session.add(user)
         db.session.commit()
+
+        # added_user = request.json
+        # if added_user['imageUrl']:
+        #     new_user = User.query.order_by(User.id.desc()).first()
+        #     image = Image(
+        #         image_url=added_user['imageUrl'],
+        #         user_id=new_user.id
+        #     )
+        #     db.session.add(image)
+        #     db.session.commit()
+
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
