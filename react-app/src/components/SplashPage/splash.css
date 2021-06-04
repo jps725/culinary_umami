@@ -11,10 +11,10 @@ html {
 
 .splash__title {
   font-family: "Architects Daughter", cursive;
-  font-size: 7em;
+  font-size: 8em;
   align-self: center;
   text-align: center;
-  margin-top: 0.5em;
+  margin-top: 1.5em;
   width: fit-content;
   color: #073b4c;
 }
@@ -28,7 +28,7 @@ html {
   color: #073b4c;
 }
 
-.splash__links {
+/* .splash__links {
   display: flex;
   align-self: center;
   margin-top: 3em;
@@ -66,4 +66,4 @@ html {
   border: 0;
   background-color: transparent;
   cursor: pointer;
-}
+} */

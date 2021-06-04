@@ -1,10 +1,12 @@
 import React from "react";
+import "./profile.css";
 
-const Profile = () => {
+const Profile = ({ user }) => {
   return (
-    <>
-      <h1>Hello From Your Profile Page</h1>
-    </>
+    <div>
+      <div>{user.username}</div>
+      <img src={user.imageUrl} />
+    </div>
   );
 };
 
