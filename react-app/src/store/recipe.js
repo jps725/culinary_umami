@@ -69,7 +69,7 @@ export const deleteRecipe = (id) => async () => {
 
 const initialState = {};
 
-const recipeReducer = (state = initialState, action) => {
+const recipes = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ONE: {
       return {
@@ -98,4 +98,4 @@ const recipeReducer = (state = initialState, action) => {
   }
 };
 
-export default recipeReducer;
+export default recipes;

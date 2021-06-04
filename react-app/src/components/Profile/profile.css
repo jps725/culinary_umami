@@ -2,3 +2,49 @@ html {
   background: url("../images/cutting-board.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.profile__user--div {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  position: absolute;
+}
+
+.profile__user--name {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+}
+
+.profile__user--img {
+  border-radius: 50%;
+  max-height: 5em;
+  max-width: 5em;
+  /* margin: 1em; */
+}
+
+.profile__recipeBox--card {
+  display: flex;
+  align-content: center;
+}
+
+.profile__recipeCard {
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.profile__recipeBox--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__recipeBox--label {
+  text-align: center;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 3em;
+  margin: 0.5em 0;
+  color: #073b4c;
+  width: max-content;
+  align-self: center;
+}

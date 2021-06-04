@@ -26,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <MenuButton user={user} />
+      <NavBar user={user} />
       <Switch>
         <Route path="/" exact={true}>
           <SplashPage />
