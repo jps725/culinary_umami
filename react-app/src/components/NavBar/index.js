@@ -21,6 +21,10 @@ const NavBar = ({ user }) => {
     history.push("/profile");
   };
 
+  const handleAdd = (e) => {
+    history.push("/addrecipe");
+  };
+
   const handleHome = (e) => {
     if (user) {
       history.push("/profile");
@@ -33,6 +37,7 @@ const NavBar = ({ user }) => {
   let actionButtonDemo;
 
   if (user) {
+    actionButtonDemo = <button onClick={handleAdd}>Add Recipe</button>;
     actionButtonLogin = <LogoutButton />;
   } else {
     actionButtonSignup = <SignupFormModal />;
@@ -48,9 +53,9 @@ const NavBar = ({ user }) => {
         </div>
       </div>
       <div className="nav__div">
+        <div className="nav__div--demo">{actionButtonDemo}</div>
         <div className="nav__div--signup">{actionButtonSignup}</div>
         <div className="nav__div--login">{actionButtonLogin}</div>
-        <div className="nav__div--demo">{actionButtonDemo}</div>
       </div>
     </nav>
   );

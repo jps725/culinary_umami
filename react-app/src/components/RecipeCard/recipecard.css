@@ -27,12 +27,11 @@
 }
 
 /*************************Images******************************/
-.recipeCard__images--container {
-  max-width: 40%;
-  margin-right: 1em;
-}
-.recipeCard__images {
+
+.recipeCard__image--container {
   display: flex;
+  max-width: 50%;
+  margin-right: 1em;
   /* align-content: center;
   justify-content: center; */
 }
