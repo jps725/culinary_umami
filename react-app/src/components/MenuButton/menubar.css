@@ -1,0 +1,71 @@
+.menu {
+  box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.45);
+  height: 3em;
+  border: 0;
+  padding: 0.25em;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 209, 102, 0.9);
+  width: 3em;
+}
+.menu__button {
+  width: 100%;
+}
+
+.menu__div {
+  /* display: flex; */
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 209, 102, 0.9);
+  box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.45);
+  position: relative;
+  /* text-decoration: none;
+    padding: 10%;
+    height: 100%;
+    font-size: 2em; */
+}
+
+.menu__div--home button {
+  text-decoration: none;
+  font-size: 2em;
+  font-family: "Indie Flower", cursive;
+  color: #073b4c;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+
+.menu__div--login button {
+  text-decoration: none;
+  font-size: 2em;
+  font-family: "Indie Flower", cursive;
+  margin-left: 1em;
+  color: #06d6a0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.menu__div--signup button {
+  text-decoration: none;
+  font-size: 2em;
+  font-family: "Indie Flower", cursive;
+  color: #118ab2;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.menu__div--demo button {
+  text-decoration: none;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  font-size: 2em;
+  font-family: "Indie Flower", cursive;
+  color: #ef476f;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -5,6 +5,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage";
 import Profile from "./components/Profile";
+import NavBar from "./components/NavBar";
+import MenuButton from "./components/MenuButton";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -24,6 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <MenuButton user={user} />
       <Switch>
         <Route path="/" exact={true}>
           <SplashPage />
