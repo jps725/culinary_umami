@@ -3,11 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./Components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import NavBar from "./Components/NavBar";
-// import MenuButton from "./components/MenuButton";
 import RecipeForm from "./Components/Forms/RecipeForm";
 import SplashPage from "./Components/SplashPage";
 import Profile from "./Components/Profile";
+import NavBar from "./Components/NavBar";
 
 function App() {
   const user = useSelector((state) => state.session.user);
