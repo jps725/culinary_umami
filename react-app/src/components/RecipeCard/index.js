@@ -19,12 +19,8 @@ const RecipeCard = ({ recipeId }) => {
     <div className="recipeCard__container">
       <div className="recipeCard__title">{recipe.title}</div>
       <div className="recipeCard__middle">
-        <div className="recipeCard__images--container">
-          {recipe.images.map((image) => (
-            <div key={image.id} className="recipeCard__image--container">
-              <img className="recipeCard__image" src={image.image_url} />
-            </div>
-          ))}
+        <div className="recipeCard__image--container">
+          <img className="recipeCard__image" src={recipe.image_url} />
         </div>
         <div className="recipeCard__ingredients">
           <div className="recipeCard__label">Ingredients</div>

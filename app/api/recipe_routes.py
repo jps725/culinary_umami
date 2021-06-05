@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, session
-from app.models import (db, Recipe, Measurement_Type, Image,
+from app.models import (db, Recipe, Measurement_Type,
                         Ingredient, Instruction)
 # from app.forms import (RecipeForm, IngredientForm, CommentForm,
 #                        InstructionForm, MeasurementTypeForm, ImageForm)
@@ -25,23 +25,30 @@ def recipe():
             recipe = request.json
             # form['csrf_token'] = request.cookies['csrf_token']
             # add recipe to db
+            if recipe['image_url'] == "":
+                image_url = "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg"
+            else:
+                image_url = recipe['image_url']
+
             new_recipe = Recipe(
                 title=recipe['title'],
-                user_id=recipe['user_id']
+                user_id=recipe['user_id'],
+                servings=recipe['servings'],
+                image_url=image_url
             )
             db.session.add(new_recipe)
             db.session.commit()
 
             added_recipe = Recipe.query.order_by(Recipe.id.desc()).first()
             # add image to db if in form
-            if recipe['image_url']:
-                image = Image(
-                    image_url=recipe['image_url'],
-                    user_id=int(recipe['user_id']),
-                    recipe_id=added_recipe.id
-                )
-                db.session.add(image)
-                db.session.commit()
+            # if recipe['image_url']:
+            #     image = Image(
+            #         image_url=recipe['image_url'],
+            #         user_id=int(recipe['user_id']),
+            #         recipe_id=added_recipe.id
+            #     )
+            #     db.session.add(image)
+            #     db.session.commit()
             # iterate through list of ingredients
             # for each create a new ingredient
             # and check for measurement type, if not in db, add it

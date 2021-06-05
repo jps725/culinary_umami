@@ -6,7 +6,8 @@ import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage";
 import Profile from "./components/Profile";
 import NavBar from "./components/NavBar";
-import MenuButton from "./components/MenuButton";
+// import MenuButton from "./components/MenuButton";
+import RecipeForm from "./components/Forms/RecipeForm";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/profile" exact={true}>
           <Profile user={user} />
+        </ProtectedRoute>
+        <ProtectedRoute path="/addrecipe" exact={true}>
+          <RecipeForm user={user} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
