@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./ingredientInput.css";
 
-const IngredientInput = ({ ing }) => {
+const IngredientInput = ({ idx, returnDetails }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -16,18 +16,17 @@ const IngredientInput = ({ ing }) => {
   const updateIngredient = (e) => setIngredient(e.target.value);
   //
   //
-  // //useefect (() =>{
-  //     returndetials(idx, {measure, quant, type})
-  //     []measurement_type, quatn,
-  // })
-  //
   useEffect(() => {
-    ing.push({
-      quantity: quantity,
-      measurement_type: measurement_type,
-      ingredient: ingredient,
-    });
-  }, [quantity, measurement_type, ingredient]);
+    returnDetails(idx, { measurement_type, quantity, ingredient });
+  }, [measurement_type, quantity, ingredient]);
+
+  // useEffect(() => {
+  //   ing.push({
+  //     quantity: quantity,
+  //     measurement_type: measurement_type,
+  //     ingredient: ingredient,
+  //   });
+  // }, [quantity, measurement_type, ingredient]);
 
   return (
     <div id="ingredient__input">

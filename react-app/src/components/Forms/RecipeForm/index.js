@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createRecipe } from "../../../store/recipe";
 import IngredientInput from "./ingredient";
+import InstructionInput from "./instruction";
 import "./recipeform.css";
 
 const RecipeForm = ({ user }) => {
@@ -11,30 +12,22 @@ const RecipeForm = ({ user }) => {
   const [title, setTitle] = useState("");
   const [servings, setServings] = useState(0);
   const [image_url, setImageUrl] = useState("");
-  // individual ingredient
-  // const [quantity, setQuantity] = useState([]);
-  // const [measurement_type, setMeasurementType] = useState([]);
-  // const [ingredient, setIngredient] = useState([]);
-
-  const [instruction, setInstruction] = useState({});
-
+  const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  const instructions = [];
 
   const user_id = user.id;
-  // on the click of a button to add a new ingredient or instruction
-  // reset state and push to array
-  // index counter
-  // update object in parent component to hold new values on change of state
-  // prevstate ...
 
-  const reset = () => {
-    setTitle("");
-    setServings(0);
-    setImageUrl("");
-    setIngredients({});
-    setInstruction({});
-  };
+  const updateTitle = (e) => setTitle(e.target.value);
+  const updateServings = (e) => setServings(e.target.value);
+  const updateImageUrl = (e) => setImageUrl(e.target.value);
+
+  // const reset = () => {
+  //   setTitle("");
+  //   setServings(0);
+  //   setImageUrl("");
+  //   setIngredients({});
+  //   setInstruction({});
+  // };
 
   const handleAddRecipe = (e) => {
     e.preventDefault();
@@ -49,44 +42,32 @@ const RecipeForm = ({ user }) => {
     dispatch(createRecipe(recipe));
   };
 
-  const updateTitle = (e) => setTitle(e.target.value);
-  const updateServings = (e) => setServings(e.target.value);
-  const updateImageUrl = (e) => setImageUrl(e.target.value);
-  // const updateQuantity = (e) => setQuantity(e.target.value);
-  // const updateMeasurementType = (e) => setMeasurementType(e.target.value);
-  // const updateIngredient = (e) => setIngredient(e.target.value);
+  const returnDetails = (idx, details) => {
+    setIngredients([
+      ...ingredients.slice(0, idx),
+      details,
+      ...ingredients.slice(idx + 1),
+    ]);
+  };
 
-  // ingredients: [{quantity:1, measurement_type: "", ingredient:""}, {}, {}]
-  // create input component for ingredients and instructions
-  // state counter
-  // set measurements
-
-  //add field = () =
-  // returndetails= (idx, details) -> {
-  //   setingredients ([
-  //     ...ing.slice(0.idx),
-  //     details,
-  //     ...ing.slice(idx+1)
-  //   ])
-  //   // addbutton fucn = () =->{
-  //     setIngredient ([...ingredietns, {}])
-  //   }
-  // }
-  // ingrdients.map((ing, idx) =>=>{
-  //   return <comp key={idx} idsx={}idx returnDetials={returnDeta}</comp>
-  // })
-  //
-  //
-
-  const [ingInputs, setIngInputs] = useState([]);
-  let ing = [];
   const handleAddIngredient = (e) => {
     e.preventDefault();
-    setIngInputs(
-      ingInputs.concat(<IngredientInput ing={ing} key={ingInputs.length} />)
-    );
-    console.log("===========================", ingInputs);
+    setIngredients([...ingredients, {}]);
   };
+
+  const returnMethods = (idx, methods) => {
+    setInstructions([
+      ...instructions.slice(0, idx),
+      methods,
+      ...instructions.slice(idx + 1),
+    ]);
+  };
+  const handleAddInstruction = (e) => {
+    e.preventDefault();
+    setInstructions([...instructions, {}]);
+  };
+  console.log("ins", instructions);
+  console.log("ing", ingredients);
   return (
     <div className="recipe__form">
       <form onSubmit={handleAddRecipe}>
@@ -120,9 +101,28 @@ const RecipeForm = ({ user }) => {
             ></input>
           </div>
           {/* ingredient quantity measurment_type ingredient */}
-          <div id="ingredient__inputs">{ingInputs}</div>
-          <button onClick={handleAddIngredient}>Add Ingredient</button>
+          {/* <div id="ingredient__inputs">{ingInputs}</div> */}
+          <div className="recipe__ingredient--inputs">
+            {ingredients.map((ingredient, idx) => (
+              <IngredientInput
+                key={idx}
+                idx={idx}
+                returnDetails={returnDetails}
+              />
+            ))}
+            <button onClick={handleAddIngredient}>Add Ingredient</button>
+          </div>
           <div className="recipe__form--button">
+            <div className="recipe__instruction--inputs">
+              {instructions.map((instruction, idx) => (
+                <InstructionInput
+                  key={idx}
+                  idx={idx}
+                  returnMethods={returnMethods}
+                />
+              ))}
+              <button onClick={handleAddInstruction}>Add Instruction</button>
+            </div>
             <button type="submit">Submit</button>
           </div>
         </fieldset>
