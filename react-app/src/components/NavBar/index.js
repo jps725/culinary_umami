@@ -1,10 +1,10 @@
 import React from "react";
 import LoginFormModal from "../Forms/LoginFormModal";
-import SignUpFormModal from "../Forms/SignUpFormModal";
+import SignupFormModal from "../Forms/SignUpFormModal";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import LogoutButton from "../auth/LogoutButton";
+import LogoutButton from "../../components/auth/LogoutButton";
 
 import "./navbar.css";
 
@@ -40,7 +40,7 @@ const NavBar = ({ user }) => {
     actionButtonDemo = <button onClick={handleAdd}>Add Recipe</button>;
     actionButtonLogin = <LogoutButton />;
   } else {
-    actionButtonSignup = <SignUpFormModal />;
+    actionButtonSignup = <SignupFormModal />;
     actionButtonLogin = <LoginFormModal />;
     actionButtonDemo = <button onClick={handleDemo}>Demo</button>;
   }
