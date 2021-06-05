@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProtectedRoute from "./Components/auth/ProtectedRoute";
+import ProtectedRoute from "react-app/src/Components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import RecipeForm from "./Components/Forms/RecipeForm";
-import SplashPage from "./Components/SplashPage";
-import Profile from "./Components/Profile";
-import NavBar from "./Components/NavBar";
+import RecipeForm from "react-app/src/Components/Forms/RecipeForm";
+import SplashPage from "react-app/src/Components/SplashPage";
+import Profile from "react-app/src/Components/Profile";
+import NavBar from "react-app/src/Components/NavBar";
 
 function App() {
   const user = useSelector((state) => state.session.user);
