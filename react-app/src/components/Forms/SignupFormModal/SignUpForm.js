@@ -9,7 +9,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [image_url, setImageUrl] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password, imageUrl));
+      await dispatch(signUp(username, email, password, image_url));
       history.push("/profile");
     }
   };
@@ -75,7 +75,7 @@ const SignUpForm = () => {
               type="text"
               name="image"
               onChange={updateImageUrl}
-              value={imageUrl}
+              value={image_url}
             ></input>
           </div>
           <div>

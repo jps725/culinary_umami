@@ -14,13 +14,13 @@ const IngredientInput = ({ ing }) => {
   const updateQuantity = (e) => setQuantity(e.target.value);
   const updateMeasurementType = (e) => setMeasurementType(e.target.value);
   const updateIngredient = (e) => setIngredient(e.target.value);
-//
-//
-//useefect (() =>{
-    returndetials(idx, {measure, quant, type})
-    []measurement_type, quatn,
-})
-//
+  //
+  //
+  // //useefect (() =>{
+  //     returndetials(idx, {measure, quant, type})
+  //     []measurement_type, quatn,
+  // })
+  //
   useEffect(() => {
     ing.push({
       quantity: quantity,

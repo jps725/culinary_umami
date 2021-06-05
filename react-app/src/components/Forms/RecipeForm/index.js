@@ -63,18 +63,18 @@ const RecipeForm = ({ user }) => {
 
   //add field = () =
   // returndetails= (idx, details) -> {
-    setingredients ([
-      ...ing.slice(0.idx),
-      details,
-      ...ing.slice(idx+1)
-    ])
-    // addbutton fucn = () =->{
-      setIngredient ([...ingredietns, {}])
-    }
-  }
-  ingrdients.map((ing, idx) =>=>{
-    return <comp key={idx} idsx={}idx returnDetials={returnDeta}</comp>
-  })
+  //   setingredients ([
+  //     ...ing.slice(0.idx),
+  //     details,
+  //     ...ing.slice(idx+1)
+  //   ])
+  //   // addbutton fucn = () =->{
+  //     setIngredient ([...ingredietns, {}])
+  //   }
+  // }
+  // ingrdients.map((ing, idx) =>=>{
+  //   return <comp key={idx} idsx={}idx returnDetials={returnDeta}</comp>
+  // })
   //
   //
 
