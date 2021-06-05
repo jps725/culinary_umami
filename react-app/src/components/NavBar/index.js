@@ -1,10 +1,10 @@
 import React from "react";
 import LoginFormModal from "../Forms/LoginFormModal";
-import SignUpFormModal from "../Forms/SignUpFormModal";
+import SignUpFormModal from "../Forms/SignUpFormModal;
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import LogoutButton from "../../components/auth/LogoutButton";
+import LogoutButton from "../auth/LogoutButton";
 
 import "./navbar.css";
 
