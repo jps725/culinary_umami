@@ -1,6 +1,6 @@
 import React from "react";
 import LoginFormModal from "../Forms/LoginFormModal";
-import SignupFormModal from "../Forms/SignUpFormModal";
+import SignUpFormModal from "../Forms/SignUpFormModal";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -40,7 +40,7 @@ const NavBar = ({ user }) => {
     actionButtonDemo = <button onClick={handleAdd}>Add Recipe</button>;
     actionButtonLogin = <LogoutButton />;
   } else {
-    actionButtonSignup = <SignupFormModal />;
+    actionButtonSignup = <SignUpFormModal />;
     actionButtonLogin = <LoginFormModal />;
     actionButtonDemo = <button onClick={handleDemo}>Demo</button>;
   }
