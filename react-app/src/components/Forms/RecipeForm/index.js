@@ -31,6 +31,7 @@ const RecipeForm = ({ user }) => {
 
   const handleAddRecipe = (e) => {
     e.preventDefault();
+
     const recipe = {
       title,
       servings,
@@ -39,7 +40,9 @@ const RecipeForm = ({ user }) => {
       ingredients,
       user_id,
     };
+    console.log("recipe---------------", recipe);
     dispatch(createRecipe(recipe));
+    history.push("/profile");
   };
 
   const returnDetails = (idx, details) => {
@@ -73,35 +76,39 @@ const RecipeForm = ({ user }) => {
       <form onSubmit={handleAddRecipe}>
         <fieldset>
           <legend>Add a Recipe</legend>
-          <div>
-            <label>Title</label>
-            <input
-              type="text"
-              name="title"
-              onChange={updateTitle}
-              value={title}
-            ></input>
+          <div className="recipe__form--top">
+            <div>
+              <label>Title</label>
+              <input
+                className="recipe__form--input"
+                type="text"
+                name="title"
+                onChange={updateTitle}
+                value={title}
+              ></input>
+            </div>
+            <div>
+              <label>Image URL</label>
+              <input
+                className="recipe__form--input"
+                type="text"
+                name="image_url"
+                onChange={updateImageUrl}
+                value={image_url}
+              ></input>
+            </div>
+            <div>
+              <label>Servings</label>
+              <input
+                className="recipe__form--input"
+                id="recipe__form--servings"
+                type="number"
+                name="servings"
+                onChange={updateServings}
+                value={servings}
+              ></input>
+            </div>
           </div>
-          <div>
-            <label>Image URL</label>
-            <input
-              type="text"
-              name="image_url"
-              onChange={updateImageUrl}
-              value={image_url}
-            ></input>
-          </div>
-          <div>
-            <label>Servings</label>
-            <input
-              type="number"
-              name="servings"
-              onChange={updateServings}
-              value={servings}
-            ></input>
-          </div>
-          {/* ingredient quantity measurment_type ingredient */}
-          {/* <div id="ingredient__inputs">{ingInputs}</div> */}
           <div className="recipe__ingredient--inputs">
             {ingredients.map((ingredient, idx) => (
               <IngredientInput
@@ -110,7 +117,12 @@ const RecipeForm = ({ user }) => {
                 returnDetails={returnDetails}
               />
             ))}
-            <button onClick={handleAddIngredient}>Add Ingredient</button>
+            <button
+              className="recipe__form--addbutton"
+              onClick={handleAddIngredient}
+            >
+              + Ingredient
+            </button>
           </div>
           <div className="recipe__form--button">
             <div className="recipe__instruction--inputs">
@@ -121,9 +133,18 @@ const RecipeForm = ({ user }) => {
                   returnMethods={returnMethods}
                 />
               ))}
-              <button onClick={handleAddInstruction}>Add Instruction</button>
+              <button
+                className="recipe__form--addbutton"
+                onClick={handleAddInstruction}
+              >
+                + Instruction
+              </button>
             </div>
-            <button type="submit">Submit</button>
+          </div>
+          <div className="recipe__form--buttoncontainer">
+            <button className="recipe__form--submit" type="submit">
+              Submit
+            </button>
           </div>
         </fieldset>
       </form>

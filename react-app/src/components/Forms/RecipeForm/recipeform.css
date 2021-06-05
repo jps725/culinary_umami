@@ -1,13 +1,14 @@
 .recipe__form {
   max-width: 100%;
   max-height: 100%;
+  width: max-content;
   font-family: "Montserrat Alternates", sans-serif;
   display: flex;
-  flex-direction: column;
   color: #073b4c;
   padding: 1em;
   border-radius: 8px;
   background-color: rgba(255, 209, 102, 0.9);
+  margin: 4em auto;
 }
 
 .recipe__form legend {
@@ -17,23 +18,31 @@
   border-radius: 8px;
 }
 
-.recipe__form input {
+.recipe__form--input {
   margin: 0.5em;
   padding: 0.75em;
-  width: 15em;
+  /* width: 10em; */
+}
+
+.recipe__form--top {
+  display: flex;
+  font-size: 0.75em;
 }
 .recipe__form div {
   margin-bottom: 1em;
 }
+#recipe__form--servings {
+  width: 2em;
+}
 
 .recipe__form label {
   display: inline-block;
-  width: 5em;
+  width: 4em;
   text-align: center;
 }
-#ingredient__inputs {
-  display: flex;
-  flex-direction: column;
+
+.recipe__ingredient--inputs {
+  width: 100%;
 }
 
 #recipe__button--div {
@@ -41,11 +50,25 @@
   justify-content: center;
 }
 
-.recipe__form button {
+.recipe__form--addbutton {
   background-color: transparent;
   border: 1px solid black;
   cursor: pointer;
   font-family: "Montserrat Alternates", sans-serif;
-  width: 50%;
-  font-size: 1em;
+  width: 15%;
+  font-size: 0.8em;
+  border-radius: 8px;
+}
+.recipe__form--buttoncontainer {
+  display: flex;
+  justify-content: center;
+}
+.recipe__form--submit {
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: "Montserrat Alternates", sans-serif;
+  width: 35%;
+  font-size: 1.2em;
+  border-radius: 8px;
 }

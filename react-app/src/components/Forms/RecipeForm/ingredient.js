@@ -30,17 +30,18 @@ const IngredientInput = ({ idx, returnDetails }) => {
 
   return (
     <div id="ingredient__input">
+      <label>Quantity</label>
       <div>
-        <label>Quantity</label>
         <input
+          className="ingredient__input--quantity"
           type="number"
           name="quantity"
           onChange={updateQuantity}
           value={quantity}
         ></input>
       </div>
+      <label>Measurement</label>
       <div>
-        <label>Measurement</label>
         <input
           type="text"
           name="measurement_type"
@@ -48,8 +49,8 @@ const IngredientInput = ({ idx, returnDetails }) => {
           value={measurement_type}
         ></input>
       </div>
+      <label>Ingredient</label>
       <div>
-        <label>Ingredient</label>
         <input
           type="text"
           name="ingredient"

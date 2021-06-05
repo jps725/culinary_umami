@@ -17,6 +17,7 @@ const InstructionInput = ({ idx, returnMethods }) => {
       <div>
         <label>Step Number</label>
         <input
+          className="instruction__input--number"
           type="number"
           name="step_number"
           onChange={updateStepNumber}

@@ -1,3 +1,12 @@
 #ingredient__input {
   display: flex;
+  align-content: center;
+  justify-content: center;
+}
+#ingredient__input label {
+  font-size: 0.75em;
+}
+
+.ingredient__input--quantity {
+  width: 2em;
 }

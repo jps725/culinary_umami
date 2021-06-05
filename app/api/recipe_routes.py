@@ -25,10 +25,16 @@ def recipe():
             recipe = request.json
             # form['csrf_token'] = request.cookies['csrf_token']
             # add recipe to db
+            if recipe['image_url'] == "":
+                image_url = "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg"
+            else:
+                image_url = recipe['image_url']
+
             new_recipe = Recipe(
                 title=recipe['title'],
                 user_id=recipe['user_id'],
-                image_url=recipe['image_url']
+                servings=recipe['servings'],
+                image_url=image_url
             )
             db.session.add(new_recipe)
             db.session.commit()

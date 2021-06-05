@@ -1,0 +1,12 @@
+#instruction__input {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+#instruction__input label {
+  font-size: 0.75em;
+}
+
+.instruction__input--number {
+  width: 2em;
+}
