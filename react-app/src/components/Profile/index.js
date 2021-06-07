@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RecipeCard from "../RecipeCard";
-import { authenticate } from "../../store/session";
 import "./profile.css";
 
 const Profile = ({ user }) => {
@@ -13,18 +12,14 @@ const Profile = ({ user }) => {
     const recipeList = Object.values(state.session.user.recipes);
     return recipeList?.map((recipe) => (
       <div key={recipe.id} className="profile__recipeBox--card">
-        <div className="profile__recipeCard">
-          <RecipeCard recipeId={recipe.id} />
-        </div>
+        <RecipeCard recipeId={recipe.id} />
       </div>
     ));
   });
 
-  const recipesList = useSelector((state) => state.session.user.recipes);
-
-  useEffect(() => {
-    return;
-  }, [recipesList]);
+  // useEffect(() => {
+  //   return;
+  // }, [recipesList]);
 
   return (
     <div>

@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import NavBar from "./components/NavBar";
 // import MenuButton from "./components/MenuButton";
 import RecipeForm from "./components/Forms/RecipeForm";
+import SingleRecipe from "./components/SingleRecipe";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -31,6 +32,9 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <SplashPage />
+        </Route>
+        <Route path="/recipe/:id">
+          <SingleRecipe />
         </Route>
         <ProtectedRoute path="/profile" exact={true}>
           <Profile user={user} />
