@@ -12,7 +12,8 @@
   justify-content: center; */
 
   display: inline-block;
-  width: 60%;
+  width: 20%;
+  margin-top: 1.5em;
 }
 
 .recipeCard__title {
@@ -41,54 +42,4 @@
   max-width: 50%; */
   max-width: 100%;
   max-height: 100%;
-}
-
-/************************Ingredients**************************/
-.recipeCard__ingredients {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-}
-.recipeCard__ingredient {
-  display: grid;
-  grid-template-columns: 2fr 6fr 8fr;
-  grid-template-areas: "num type name";
-}
-
-.recipeCard__ingredient--number {
-  grid-area: num;
-}
-
-.recipeCard__ingredient--measurement {
-  grid-area: type;
-}
-
-.recipeCard__ingredient--name {
-  grid-area: name;
-}
-
-/************************Instruction**************************/
-
-.recipeCard__instructions {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-}
-.recipeCard__instruction {
-  display: grid;
-  grid-template-columns: 0.5fr 10fr;
-  grid-template-areas: "num method";
-  padding: 0.5em;
-}
-
-.recipeCard__instruction--step {
-  grid-area: num;
-}
-
-.recipeCard__instruction--method {
-  grid-area: method;
-}
-
-.recipeCard__middle {
-  display: flex;
 }
