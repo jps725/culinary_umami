@@ -97,7 +97,7 @@ def update_recipe():
     if request.method == 'PUT':
         if request.cookies['csrf_token']:
             data = request.json
-            # print("==================", updated_recipe)
+
             recipe = Recipe.query.get(int(data['id']))
 
             if data['image_url'] == "":
@@ -105,7 +105,6 @@ def update_recipe():
             else:
                 image_url = data['image_url']
 
-                # recipe.id = updated_recipe['id']
                 recipe.title = data['title'],
                 recipe.servings = data['servings'],
                 recipe.image_url = image_url
@@ -139,8 +138,6 @@ def update_recipe():
                     db.session.add(new_ingredient)
                     db.session.commit()
 
-                # measurement_type = Measurement_Type.query.get(
-                #     edit_ingredient.measurement_type_id)
                 else:
                     edit_ingredient = Ingredient.query.get(
                         int(ingredient['id']))
@@ -168,11 +165,10 @@ def update_recipe():
                     edit_ingredient.ingredient = ingredient['ingredient'],
                     edit_ingredient.quantity = float(ingredient['quantity']),
                     edit_ingredient.measurement_type_id = measurement_type.id,
-                # edit_ingredient.recipe_id = edit_ingredient.recipe_id
 
                     db.session.add(edit_ingredient)
                     db.session.commit()
-            # iterate through list of instructions and add each to db
+
             for instruction in data['instructions']:
 
                 if 'id' not in instruction:
@@ -190,11 +186,10 @@ def update_recipe():
                     edit_instruction.step_number = int(
                         instruction['step_number']),
                     edit_instruction.method = instruction['method'],
-                    # edit_instruction.recipe_id = edit_instruction.recipe_id
+
                     db.session.add(edit_instruction)
                     db.session.commit()
 
-            # newest_recipe = Recipe.query.get(recipe.id)
             return recipe.to_dict()
 
 

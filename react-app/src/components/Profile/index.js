@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RecipeCard from "../RecipeCard";
+import { getRecipes } from "../../store/recipe";
+
 import "./profile.css";
 
 const Profile = ({ user }) => {
@@ -16,10 +18,6 @@ const Profile = ({ user }) => {
       </div>
     ));
   });
-
-  // useEffect(() => {
-  //   return;
-  // }, [recipesList]);
 
   return (
     <div>

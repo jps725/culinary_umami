@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneRecipe } from "../../store/recipe";
-import { useParams, NavLink, useLocation } from "react-router-dom";
-import UpdateRecipeForm from "../Forms/UpdateRecipeForm";
+import { useParams, NavLink } from "react-router-dom";
+import DeleteFormModal from "../Forms/DeleteFormModal";
 
 import "./singlerecipe.css";
 
@@ -67,7 +67,14 @@ const SingleRecipe = () => {
           </div>
         ))}
       </div>
-      {render && <NavLink to={`/editrecipe/${recipeId}`}>Edit Recipe</NavLink>}
+      <div className="recipe__edit--button">
+        {render && (
+          <NavLink to={`/editrecipe/${recipeId}`}>Edit Recipe</NavLink>
+        )}
+      </div>
+      <div className="recipe__delete--button">
+        {render && <DeleteFormModal recipeId={recipeId} />}
+      </div>
     </div>
   );
 };

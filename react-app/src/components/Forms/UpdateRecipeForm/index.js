@@ -53,8 +53,7 @@ const UpdateRecipeForm = ({ user }) => {
       id,
       user_id,
     };
-    // console.log("recipe---------------", recipe);
-    console.log("---------------", recipe);
+
     dispatch(updateRecipe(recipe));
     history.push(`/recipe/${recipeId}`);
   };

@@ -40,7 +40,7 @@ const RecipeForm = ({ user }) => {
       ingredients,
       user_id,
     };
-    console.log("recipe---------------", recipe);
+
     dispatch(createRecipe(recipe));
     history.push("/profile");
   };
@@ -69,8 +69,7 @@ const RecipeForm = ({ user }) => {
     e.preventDefault();
     setInstructions([...instructions, {}]);
   };
-  console.log("ins", instructions);
-  console.log("ing", ingredients);
+
   return (
     <div className="recipe__form">
       <form onSubmit={handleAddRecipe}>
