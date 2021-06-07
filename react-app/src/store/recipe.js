@@ -70,7 +70,7 @@ export const updateRecipe = (recipe) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(project),
+    body: JSON.stringify(recipe),
   });
   const data = await res.json();
   if (data.errors) {

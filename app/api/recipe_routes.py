@@ -96,72 +96,106 @@ def update_recipe():
 
     if request.method == 'PUT':
         if request.cookies['csrf_token']:
-            updated_recipe = request.json
-            recipe = Recipe.query.get(int(update_recipe['id']))
+            data = request.json
+            # print("==================", updated_recipe)
+            recipe = Recipe.query.get(int(data['id']))
 
-            if updated_recipe['image_url'] == "":
+            if data['image_url'] == "":
                 image_url = "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg"
             else:
-                image_url = updated_recipe['image_url']
+                image_url = data['image_url']
 
-                recipe.id = update_recipe['id']
-                recipe.title = updated_recipe['title'],
-                recipe.servings = updated_recipe['servings'],
+                # recipe.id = updated_recipe['id']
+                recipe.title = data['title'],
+                recipe.servings = data['servings'],
                 recipe.image_url = image_url
 
-            db.session.add(updated_recipe)
+            db.session.add(recipe)
             db.session.commit()
 
-            # added_recipe = Recipe.query.order_by(Recipe.id.desc()).first()
+            for ingredient in data['ingredients']:
 
-            for updated_ingredient in updated_recipe['ingredients']:
-
-                edit_ingredient = Ingredient.query.get(
-                    int(updated_ingredient['id']))
-
-                measurement_type = Measurement_Type.query.get(
-                    int(edit_ingredient.measurement_type_id))
-
-                if (updated_ingredient['measurement_type'] !=
-                        measurement_type.measurement_type):
-
-                    find_measurement_type = Measurement_Type.query.filter_by(
-                        measurement_type=updated_ingredient['measurement_type']
+                if 'id' not in ingredient:
+                    measurement_type = Measurement_Type.query.filter_by(
+                        measurement_type=ingredient['measurement_type']
                     ).first()
-                    if not find_measurement_type:
+
+                    if not measurement_type:
                         new_measurement_type = Measurement_Type(
-                            measurement_type=updated_ingredient[
-                                'measurement_type']
+                            measurement_type=ingredient['measurement_type']
                         )
                         db.session.add(new_measurement_type)
                         db.session.commit()
                         measurement_type = Measurement_Type.query.filter_by(
-                            measurement_type=updated_ingredient[
-                                'measurement_type']
+                            measurement_type=ingredient['measurement_type']
                         ).first()
 
-                edit_ingredient.ingredient = updated_ingredient['ingredient'],
-                edit_ingredient.quantity = float(
-                    updated_ingredient['quantity']),
-                edit_ingredient.measurement_type_id = measurement_type.id,
-                edit_ingredient.recipe_id = edit_ingredient.recipe_id
+                    new_ingredient = Ingredient(
+                        ingredient=ingredient['ingredient'],
+                        quantity=ingredient['quantity'],
+                        recipe_id=recipe.id,
+                        measurement_type_id=measurement_type.id
+                    )
+                    db.session.add(new_ingredient)
+                    db.session.commit()
 
-                db.session.add(edit_ingredient)
-                db.session.commit()
+                # measurement_type = Measurement_Type.query.get(
+                #     edit_ingredient.measurement_type_id)
+                else:
+                    edit_ingredient = Ingredient.query.get(
+                        int(ingredient['id']))
+                    measurement_type = Measurement_Type.query.filter_by(
+                        measurement_type=ingredient['measurement_type']
+                    ).first()
+                    if (ingredient['measurement_type'] !=
+                            measurement_type.measurement_type):
+
+                        measurement_type = Measurement_Type.query.filter_by(
+                            measurement_type=ingredient['measurement_type']
+                        ).first()
+                        if not measurement_type:
+                            new_measurement_type = Measurement_Type(
+                                measurement_type=ingredient[
+                                    'measurement_type']
+                            )
+                            db.session.add(new_measurement_type)
+                            db.session.commit()
+                            measurement_type = Measurement_Type.query.filter_by(
+                                measurement_type=ingredient[
+                                    'measurement_type']
+                            ).first()
+
+                    edit_ingredient.ingredient = ingredient['ingredient'],
+                    edit_ingredient.quantity = float(ingredient['quantity']),
+                    edit_ingredient.measurement_type_id = measurement_type.id,
+                # edit_ingredient.recipe_id = edit_ingredient.recipe_id
+
+                    db.session.add(edit_ingredient)
+                    db.session.commit()
             # iterate through list of instructions and add each to db
-            for update_instruction in updated_recipe['instructions']:
-                edit_instruction = Instruction.query.get(
-                    update_instruction['id'])
+            for instruction in data['instructions']:
 
-                edit_instruction.step_number = int(
-                    new_instruction['step_number']),
-                edit_instruction.method = new_instruction['method'],
-                edit_instruction.recipe_id = edit_instruction.recipe_id
-                db.session.add(edit_instruction)
-                db.session.commit()
+                if 'id' not in instruction:
+                    new_instruction = Instruction(
+                        step_number=int(instruction['step_number']),
+                        method=instruction['method'],
+                        recipe_id=recipe.id
+                    )
+                    db.session.add(new_instruction)
+                    db.session.commit()
+                else:
+                    edit_instruction = Instruction.query.get(
+                        int(instruction['id']))
 
-            newest_recipe = Recipe.query.get(recipe.id)
-            return newest_recipe.to_dict()
+                    edit_instruction.step_number = int(
+                        instruction['step_number']),
+                    edit_instruction.method = instruction['method'],
+                    # edit_instruction.recipe_id = edit_instruction.recipe_id
+                    db.session.add(edit_instruction)
+                    db.session.commit()
+
+            # newest_recipe = Recipe.query.get(recipe.id)
+            return recipe.to_dict()
 
 
 @recipe_routes.route('/<int:id>')

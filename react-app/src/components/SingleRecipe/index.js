@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneRecipe } from "../../store/recipe";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink, useLocation } from "react-router-dom";
+import UpdateRecipeForm from "../Forms/UpdateRecipeForm";
 
 import "./singlerecipe.css";
 
@@ -9,11 +10,21 @@ const SingleRecipe = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipeId = id;
+
   useEffect(() => {
     dispatch(getOneRecipe(recipeId));
-  }, [dispatch, recipeId]);
+  }, [dispatch]);
 
   const recipe = useSelector((state) => state.recipes[recipeId]);
+  const userId = useSelector((state) => state.session.user.id);
+  // const location = useLocation();
+  // const { recipe } = location.recipe;
+  // console.log(recipe);
+
+  let render = false;
+  if (userId === recipe?.user_id) {
+    render = true;
+  }
 
   if (!recipe) {
     return null;
@@ -56,8 +67,8 @@ const SingleRecipe = () => {
           </div>
         ))}
       </div>
+      {render && <NavLink to={`/editrecipe/${recipeId}`}>Edit Recipe</NavLink>}
     </div>
   );
 };
-
 export default SingleRecipe;

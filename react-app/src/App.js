@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 // import MenuButton from "./components/MenuButton";
 import RecipeForm from "./components/Forms/RecipeForm";
 import SingleRecipe from "./components/SingleRecipe";
+import UpdateRecipeForm from "./components/Forms/UpdateRecipeForm";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -42,6 +43,9 @@ function App() {
         <ProtectedRoute path="/addrecipe" exact={true}>
           <RecipeForm user={user} />
         </ProtectedRoute>
+        <Route path="/editrecipe/:id" exact={true}>
+          <UpdateRecipeForm user={user} />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
