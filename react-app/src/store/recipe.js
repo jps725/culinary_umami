@@ -1,6 +1,7 @@
 const LOAD_ALL = "recipe/LOAD_ALL";
 const LOAD_ONE = "recipe/LOAD_ONE";
 const ADD_ONE = "recipe/ADD_ONE";
+const UPDATE = "recipe/UPDATE";
 
 const loadAll = (recipes) => ({
   type: LOAD_ALL,
@@ -14,6 +15,11 @@ const loadOne = (recipe) => ({
 
 const create = (recipe) => ({
   type: ADD_ONE,
+  recipe,
+});
+
+const update = (recipe) => ({
+  type: UPDATE,
   recipe,
 });
 
@@ -58,6 +64,21 @@ export const createRecipe = (recipe) => async (dispatch) => {
   dispatch(create(data));
 };
 
+export const updateRecipe = (recipe) => async (dispatch) => {
+  const res = await fetch("/api/recipes", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(project),
+  });
+  const data = await res.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(update(data));
+};
+
 export const deleteRecipe = (id) => async () => {
   await fetch(`/api/recipes/${id}`, {
     method: "DELETE",
@@ -87,6 +108,13 @@ const recipes = (state = initialState, action) => {
     }
 
     case ADD_ONE: {
+      return {
+        ...state,
+        [action.recipe.id]: action.recipe,
+      };
+    }
+
+    case UPDATE: {
       return {
         ...state,
         [action.recipe.id]: action.recipe,

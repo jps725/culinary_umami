@@ -31,3 +31,5 @@ class Recipe(db.Model):
             "instructions": [instruction.to_dict() for
                              instruction in self.instructions],
         }
+
+# add source and url clickable on source
