@@ -11,7 +11,7 @@ const Profile = ({ user }) => {
   const history = useHistory();
 
   const recipeList = useSelector((state) => Object.values(state.recipes));
-  let recipes;
+  let recipes = [];
   if (recipeList) {
     recipes = recipeList.map((recipe) => (
       <div key={recipe.id} className="profile__recipeBox--card">
@@ -22,8 +22,11 @@ const Profile = ({ user }) => {
 
   useEffect(() => {
     dispatch(getUserRecipes(user.id));
-  }, [dispatch]);
+  }, [dispatch, recipes.length]);
 
+  if (!recipeList) {
+    return null;
+  }
   return (
     <div>
       <div className="profile__user--div">

@@ -180,7 +180,7 @@ def update_recipe():
                 instruction = Instruction(
                     # step_number=int(new_instruction['step_number']),
                     method=data["instructions"],
-                    recipe_id=added_recipe.id
+                    recipe_id=recipe.id
                 )
                 db.session.add(instruction)
                 db.session.commit()
@@ -218,4 +218,4 @@ def delete_recipe(id):
     recipe = Recipe.query.get(id)
     db.session.delete(recipe)
     db.session.commit()
-    return{}
+    return {"id": id}

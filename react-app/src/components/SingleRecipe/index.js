@@ -35,6 +35,9 @@ const SingleRecipe = () => {
       <div className="recipe__container">
         <div className="recipe__title">{recipe.title}</div>
         <div className="recipe__servings">Servings: {recipe.servings}</div>
+        <div className="recipe__source">
+          <a href={recipe.source_url}>Creator</a>
+        </div>
         <div className="recipe__middle">
           <div className="recipe__image--container">
             <img className="recipe__image" src={recipe.image_url} />
@@ -59,15 +62,6 @@ const SingleRecipe = () => {
         <div className="recipe__instructions">
           <div className="recipe__label">Instructions</div>
           <div className="recipe__method">{recipe.instruction[0].method} </div>
-          {/* {recipe.instructions.map((instruction) => (
-            <div key={instruction.id} className="recipe__instruction">
-              <div className="recipe__instruction--step">
-                {instruction.step_number}
-              </div>
-              <div className="recipe__instruction--method">
-                {instruction.method}
-              </div> */}
-          {/* ))} */}
         </div>
         <div className="recipe__button--container">
           <div className="recipe__button">
@@ -81,7 +75,7 @@ const SingleRecipe = () => {
             )}
           </div>
           <div className="recipe__button">
-            {render && <DeleteFormModal recipeId={recipeId} />}
+            {render && <DeleteFormModal userId={userId} recipeId={recipeId} />}
           </div>
         </div>
       </div>
