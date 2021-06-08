@@ -38,7 +38,17 @@
 .recipe__form label {
   display: inline-block;
   width: 4em;
+  font-size: 1.25em;
   text-align: center;
+}
+.recipe__instruction--container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+.recipe__form--instruction {
+  align-self: center;
+  width: 75%;
 }
 
 .recipe__ingredient--inputs {

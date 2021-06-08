@@ -12,6 +12,7 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
     oldIngredient.measurement_type
   );
   const [ingredient, setIngredient] = useState(oldIngredient.ingredient);
+  const id = oldIngredient.id;
   //   const [ingredients, setIngredients] = useState([]);
   const updateQuantity = (e) => setQuantity(e.target.value);
   const updateMeasurementType = (e) => setMeasurementType(e.target.value);
@@ -19,8 +20,8 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
   //
   //
   useEffect(() => {
-    returnDetails(idx, { measurement_type, quantity, ingredient });
-  }, [measurement_type, quantity, ingredient]);
+    returnDetails(idx, { measurement_type, quantity, ingredient, id });
+  }, [measurement_type, quantity, ingredient, id]);
 
   // useEffect(() => {
   //   ing.push({

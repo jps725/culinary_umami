@@ -2,7 +2,7 @@ import DeleteForm from "./DeleteForm";
 import React, { useState } from "react";
 import { Modal } from "../../../context/Modal";
 
-function DeleteFormModal({ recipeId }) {
+function DeleteFormModal({ userId, recipeId }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
@@ -15,7 +15,7 @@ function DeleteFormModal({ recipeId }) {
       </button>
       {showModal && (
         <Modal onClose={handleCloseModal}>
-          <DeleteForm recipeId={recipeId} />
+          <DeleteForm recipeId={recipeId} userId={userId} />
         </Modal>
       )}
     </div>

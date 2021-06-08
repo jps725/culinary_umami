@@ -123,11 +123,10 @@ const RecipeForm = ({ user }) => {
               + Ingredient
             </button>
           </div>
-          <div>
+          <div className="recipe__instruction--container">
             <label>Instructions</label>
             <textarea
-              className="recipe__form--input"
-              id="recipe__form--servings"
+              className="recipe__form--instruction"
               type="text"
               name="instructions"
               onChange={updateInstructions}
