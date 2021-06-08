@@ -1,3 +1,9 @@
+.recipe__page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .recipe__container {
   background-color: rgb(245, 234, 212);
   border-radius: 5px;
@@ -13,6 +19,7 @@
 
   display: inline-block;
   width: 60%;
+  margin-top: 3em;
 }
 
 .recipe__title {
@@ -91,4 +98,24 @@
 
 .recipe__middle {
   display: flex;
+}
+
+.recipe__button--container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 1em;
+}
+.recipe__edit--button {
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: "Montserrat Alternates", sans-serif;
+  width: 50%;
+  font-size: 1em;
+  color: black;
+  padding: 0.5em;
 }

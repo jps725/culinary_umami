@@ -2,24 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RecipeCard from "../RecipeCard";
+import { getUserRecipes } from "../../store/recipe";
+
 import "./profile.css";
 
 const Profile = ({ user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const recipes = useSelector((state) => {
-    const recipeList = Object.values(state.session.user.recipes);
-    return recipeList?.map((recipe) => (
+  const recipeList = useSelector((state) => Object.values(state.recipes));
+  let recipes;
+  if (recipeList) {
+    recipes = recipeList.map((recipe) => (
       <div key={recipe.id} className="profile__recipeBox--card">
         <RecipeCard recipeId={recipe.id} />
       </div>
     ));
-  });
+  }
 
-  // useEffect(() => {
-  //   return;
-  // }, [recipesList]);
+  useEffect(() => {
+    dispatch(getUserRecipes(user.id));
+  }, [dispatch]);
 
   return (
     <div>

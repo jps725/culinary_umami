@@ -16,6 +16,14 @@ def validation_errors_to_error_messages(validation_errors):
     return error_messages
 
 
+@recipe_routes.route("/user/<int:id>")
+def get_recipes(id):
+    recipes = Recipe.query.filter(Recipe.user_id == id).order_by(
+        Recipe.created_at.desc()).limit(16)
+
+    return jsonify([recipe.to_dict() for recipe in recipes])
+
+
 @recipe_routes.route("", methods=['POST'])
 def recipe():
     if request.method == 'POST':
@@ -76,15 +84,14 @@ def recipe():
 
                 db.session.add(new_ingredient)
                 db.session.commit()
-            # iterate through list of instructions and add each to db
-            for new_instruction in recipe['instructions']:
-                add_instruction = Instruction(
-                    step_number=int(new_instruction['step_number']),
-                    method=new_instruction['method'],
-                    recipe_id=added_recipe.id
-                )
-                db.session.add(add_instruction)
-                db.session.commit()
+
+            instruction = Instruction(
+                # step_number=int(new_instruction['step_number']),
+                method=recipe["instructions"],
+                recipe_id=added_recipe.id
+            )
+            db.session.add(instruction)
+            db.session.commit()
 
             newest_recipe = Recipe.query.get(added_recipe.id)
             return newest_recipe.to_dict()
@@ -97,7 +104,7 @@ def update_recipe():
     if request.method == 'PUT':
         if request.cookies['csrf_token']:
             data = request.json
-            # print("==================", updated_recipe)
+
             recipe = Recipe.query.get(int(data['id']))
 
             if data['image_url'] == "":
@@ -105,7 +112,6 @@ def update_recipe():
             else:
                 image_url = data['image_url']
 
-                # recipe.id = updated_recipe['id']
                 recipe.title = data['title'],
                 recipe.servings = data['servings'],
                 recipe.image_url = image_url
@@ -139,8 +145,6 @@ def update_recipe():
                     db.session.add(new_ingredient)
                     db.session.commit()
 
-                # measurement_type = Measurement_Type.query.get(
-                #     edit_ingredient.measurement_type_id)
                 else:
                     edit_ingredient = Ingredient.query.get(
                         int(ingredient['id']))
@@ -168,34 +172,38 @@ def update_recipe():
                     edit_ingredient.ingredient = ingredient['ingredient'],
                     edit_ingredient.quantity = float(ingredient['quantity']),
                     edit_ingredient.measurement_type_id = measurement_type.id,
-                # edit_ingredient.recipe_id = edit_ingredient.recipe_id
 
                     db.session.add(edit_ingredient)
                     db.session.commit()
-            # iterate through list of instructions and add each to db
-            for instruction in data['instructions']:
 
-                if 'id' not in instruction:
-                    new_instruction = Instruction(
-                        step_number=int(instruction['step_number']),
-                        method=instruction['method'],
-                        recipe_id=recipe.id
-                    )
-                    db.session.add(new_instruction)
-                    db.session.commit()
-                else:
-                    edit_instruction = Instruction.query.get(
-                        int(instruction['id']))
+            if 'id' not in data['instructions']:
+                instruction = Instruction(
+                    # step_number=int(new_instruction['step_number']),
+                    method=data["instructions"],
+                    recipe_id=added_recipe.id
+                )
+                db.session.add(instruction)
+                db.session.commit()
 
-                    edit_instruction.step_number = int(
-                        instruction['step_number']),
-                    edit_instruction.method = instruction['method'],
-                    # edit_instruction.recipe_id = edit_instruction.recipe_id
-                    db.session.add(edit_instruction)
-                    db.session.commit()
+                # new_instruction = Instruction(
+                #     # step_number=int(instruction['step_number']),
+                #     method=instruction['method'],
+                #     recipe_id=recipe.id
+                # )
+                # db.session.add(new_instruction)
+                # db.session.commit()
+            else:
+                edit_instruction = Instruction.query.get(
+                    int(instruction['id']))
 
-            # newest_recipe = Recipe.query.get(recipe.id)
-            return recipe.to_dict()
+                # edit_instruction.step_number = int(
+                #     instruction['step_number']),
+                edit_instruction.method = instruction['method'],
+
+                db.session.add(edit_instruction)
+                db.session.commit()
+
+        return recipe.to_dict()
 
 
 @recipe_routes.route('/<int:id>')

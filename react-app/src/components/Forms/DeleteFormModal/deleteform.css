@@ -1,0 +1,47 @@
+.delete__form {
+  max-width: 100%;
+  max-height: 100%;
+  font-family: "Montserrat Alternates", sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #073b4c;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: rgba(255, 209, 102, 0.9);
+  /* background-color: rgba(6, 214, 160, 0.85); */
+}
+
+.delete__form fieldset {
+  border-radius: 8px;
+}
+
+.delete__form legend {
+  font-size: 2em;
+}
+
+.delete__form div {
+  margin-bottom: 1em;
+}
+
+#delete__button--div {
+  display: flex;
+  justify-content: center;
+}
+.delete__form button {
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: "Montserrat Alternates", sans-serif;
+  width: 50%;
+  font-size: 1em;
+}
+
+.recipe__delete--button {
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: "Montserrat Alternates", sans-serif;
+  width: 100%;
+  font-size: 1em;
+  padding: 0.5em;
+}

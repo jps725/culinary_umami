@@ -10,8 +10,9 @@ class RecipeForm(FlaskForm):
     measurement_type = StringField(
         "Measurement Type", validators=[DataRequired()])
     image_url = StringField("Image Url"),
+    source_url = StringField("Source Url"),
     servings = IntegerField("Servings", validators=[DataRequired()])
     ingredient = StringField("Ingredient", validators=[DataRequired()])
     quantity = IntegerField("Quantity", validators=[DataRequired()])
-    step_number = IntegerField("Step Number", validators=[DataRequired()])
+    # step_number = IntegerField("Step Number", validators=[DataRequired()])
     method = StringField("Method", validators=[DataRequired()])
