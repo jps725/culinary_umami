@@ -5,6 +5,7 @@ from .ingredients import seed_ingredients, undo_ingredients
 from .instructions import seed_instructions, undo_instructions
 from .measurement_types import seed_measurement_types, undo_measurement_types
 from .recipes import seed_recipes, undo_recipes
+# from .bulky import seed_big_recipe, undo_big_recipe
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -22,6 +23,7 @@ def seed():
     seed_ingredients()
     seed_instructions()
     seed_comments()
+    # seed_big_recipe()
 
 # Creates the `flask seed undo` command
 
@@ -35,3 +37,4 @@ def undo():
     undo_ingredients()
     undo_instructions()
     undo_comments()
+    # undo_big_recipe()

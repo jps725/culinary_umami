@@ -17,6 +17,7 @@ const SingleRecipe = () => {
 
   const recipe = useSelector((state) => state.recipes[recipeId]);
   const userId = useSelector((state) => state.session.user.id);
+
   // const location = useLocation();
   // const { recipe } = location.recipe;
   // console.log(recipe);
@@ -57,16 +58,16 @@ const SingleRecipe = () => {
         </div>
         <div className="recipe__instructions">
           <div className="recipe__label">Instructions</div>
-          {recipe.instructions.map((instruction) => (
+          <div className="recipe__method">{recipe.instruction[0].method} </div>
+          {/* {recipe.instructions.map((instruction) => (
             <div key={instruction.id} className="recipe__instruction">
               <div className="recipe__instruction--step">
                 {instruction.step_number}
               </div>
               <div className="recipe__instruction--method">
                 {instruction.method}
-              </div>
-            </div>
-          ))}
+              </div> */}
+          {/* ))} */}
         </div>
         <div className="recipe__button--container">
           <div className="recipe__button">

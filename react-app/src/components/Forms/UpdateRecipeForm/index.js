@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateRecipe, getOneRecipe } from "../../../store/recipe";
 import IngredientInput from "./ingredient";
-import InstructionInput from "./instruction";
+// import InstructionInput from "./instruction";
 import "./updaterecipeform.css";
 
 const UpdateRecipeForm = ({ user }) => {
@@ -21,7 +21,7 @@ const UpdateRecipeForm = ({ user }) => {
   const [title, setTitle] = useState("");
   const [servings, setServings] = useState(0);
   const [image_url, setImageUrl] = useState("");
-  const [instructions, setInstructions] = useState([]);
+  const [instructions, setInstructions] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
   // useeffect set states for above based on recipe
@@ -32,7 +32,7 @@ const UpdateRecipeForm = ({ user }) => {
       setServings(recipe.servings);
       setImageUrl(recipe.image_url);
       setIngredients(recipe.ingredients);
-      setInstructions(recipe.instructions);
+      setInstructions(recipe.instruction[0].method);
     }
   }, [recipe]);
 
@@ -40,6 +40,7 @@ const UpdateRecipeForm = ({ user }) => {
   const updateTitle = (e) => setTitle(e.target.value);
   const updateServings = (e) => setServings(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
+  const updateInstructions = (e) => setInstructions(e.target.value);
 
   const handleUpdateRecipe = (e) => {
     e.preventDefault();
@@ -71,17 +72,17 @@ const UpdateRecipeForm = ({ user }) => {
     setIngredients([...ingredients, {}]);
   };
 
-  const returnMethods = (idx, methods) => {
-    setInstructions([
-      ...instructions.slice(0, idx),
-      methods,
-      ...instructions.slice(idx + 1),
-    ]);
-  };
-  const handleAddInstruction = (e) => {
-    e.preventDefault();
-    setInstructions([...instructions, {}]);
-  };
+  // const returnMethods = (idx, methods) => {
+  //   setInstructions([
+  //     ...instructions.slice(0, idx),
+  //     methods,
+  //     ...instructions.slice(idx + 1),
+  //   ]);
+  // };
+  // const handleAddInstruction = (e) => {
+  //   e.preventDefault();
+  //   setInstructions([...instructions, {}]);
+  // };
 
   if (!recipe) {
     return null;
@@ -141,23 +142,16 @@ const UpdateRecipeForm = ({ user }) => {
               + Ingredient
             </button>
           </div>
-          <div className="recipe__form--button">
-            <div className="recipe__instruction--inputs">
-              {instructions.map((instruction, idx) => (
-                <InstructionInput
-                  key={idx}
-                  idx={idx}
-                  returnMethods={returnMethods}
-                  oldInstruction={instruction}
-                />
-              ))}
-              <button
-                className="recipe__form--addbutton"
-                onClick={handleAddInstruction}
-              >
-                + Instruction
-              </button>
-            </div>
+          <div>
+            <label>Instructions</label>
+            <textarea
+              className="recipe__form--input"
+              id="recipe__form--servings"
+              type="text"
+              name="instructions"
+              onChange={updateInstructions}
+              value={instructions}
+            ></textarea>
           </div>
           <div className="recipe__form--buttoncontainer">
             <button className="recipe__form--submit" type="submit">

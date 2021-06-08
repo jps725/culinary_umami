@@ -16,7 +16,7 @@ class Recipe(db.Model):
     user = db.relationship("User", back_populates="recipes")
     comments = db.relationship("Comment", back_populates="recipe")
     ingredients = db.relationship("Ingredient", back_populates="recipe")
-    instructions = db.relationship("Instruction", back_populates="recipe")
+    instruction = db.relationship("Instruction", back_populates="recipe")
     comments = db.relationship("Comment", back_populates="recipe")
 
     def to_dict(self):
@@ -26,11 +26,12 @@ class Recipe(db.Model):
             "servings": self.servings,
             "created_at": self.created_at,
             "user_id": self.user_id,
+            "source_url": self.source_url,
             "image_url": self.image_url,
+            "instruction": [instruction.to_dict() for
+                            instruction in self.instruction],
             "ingredients": [ingredient.to_dict() for
-                            ingredient in self.ingredients],
-            "instructions": [instruction.to_dict() for
-                             instruction in self.instructions],
+                            ingredient in self.ingredients]
         }
 
 # add source and url clickable on source

@@ -6,7 +6,8 @@ def seed_recipes():
         title="Lamb and Potatoes",
         user_id=1,
         servings=4,
-        image_url="https://i.ibb.co/zxYQFDf/IMG-3553.jpg"
+        image_url="https://i.ibb.co/zxYQFDf/IMG-3553.jpg",
+        source_url="https://google.com"
     )
 
     db.session.add(recipe_one)
