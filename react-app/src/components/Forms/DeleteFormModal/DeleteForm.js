@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteRecipe } from "../../../store/recipe";
 import { useHistory } from "react-router-dom";
+import "./deleteform.css";
 
 const DeleteForm = ({ recipeId }) => {
   const dispatch = useDispatch();
@@ -14,12 +15,15 @@ const DeleteForm = ({ recipeId }) => {
 
   return (
     <div className="delete__form">
-      <div className="delete__form--message">
-        Are you sure you want to Delete this recipe?
-      </div>
-      <div className="delete__button--container">
-        <button onClick={handleDelete}>Delete</button>
-      </div>
+      <fieldset>
+        <legend>Delete Recipe</legend>
+        <div className="delete__form--message">
+          Are you sure, this action cannot be undone?
+        </div>
+        <div id="delete__button--div">
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      </fieldset>
     </div>
   );
 };

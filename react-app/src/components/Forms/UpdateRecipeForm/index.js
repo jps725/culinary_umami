@@ -91,7 +91,7 @@ const UpdateRecipeForm = ({ user }) => {
     <div className="recipe__form">
       <form onSubmit={handleUpdateRecipe}>
         <fieldset>
-          <legend>Add a Recipe</legend>
+          <legend>Update a Recipe</legend>
           <div className="recipe__form--top">
             <div>
               <label>Title</label>

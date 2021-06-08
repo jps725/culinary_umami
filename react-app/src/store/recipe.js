@@ -24,8 +24,21 @@ const update = (recipe) => ({
 });
 
 export const getRecipes = () => async (dispatch) => {
-  const res = await fetch("/api/recipes", {
+  const res = await fetch("/api/recipes/", {
     headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  if (data.errors) {
+    return data.errors;
+  }
+  dispatch(loadAll(data));
+};
+
+export const getUserRecipes = (id) => async (dispatch) => {
+  const res = await fetch(`/api/recipes/user/${id}`, {
+    header: {
       "Content-Type": "application/json",
     },
   });

@@ -16,6 +16,14 @@ def validation_errors_to_error_messages(validation_errors):
     return error_messages
 
 
+@recipe_routes.route("/user/<int:id>")
+def get_recipes(id):
+    recipes = Recipe.query.filter(Recipe.user_id == id).order_by(
+        Recipe.created_at.desc()).limit(16)
+
+    return jsonify([recipe.to_dict() for recipe in recipes])
+
+
 @recipe_routes.route("", methods=['POST'])
 def recipe():
     if request.method == 'POST':

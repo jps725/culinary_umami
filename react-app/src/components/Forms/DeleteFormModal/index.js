@@ -10,7 +10,9 @@ function DeleteFormModal({ recipeId }) {
 
   return (
     <div>
-      <button onClick={handleShowModal}>Delete</button>
+      <button className="recipe__delete--button" onClick={handleShowModal}>
+        Delete
+      </button>
       {showModal && (
         <Modal onClose={handleCloseModal}>
           <DeleteForm recipeId={recipeId} />
