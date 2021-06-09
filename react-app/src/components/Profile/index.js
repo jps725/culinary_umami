@@ -13,11 +13,15 @@ const Profile = ({ user }) => {
   const recipeList = useSelector((state) => Object.values(state.recipes));
   let recipes = [];
   if (recipeList) {
-    recipes = recipeList.map((recipe) => (
-      <div key={recipe.id} className="profile__recipeBox--card">
-        <RecipeCard recipeId={recipe.id} />
-      </div>
-    ));
+    recipes = recipeList.map((recipe) => {
+      if (recipe.user_id === user.id) {
+        return (
+          <div key={recipe.id} className="profile__recipeBox--card">
+            <RecipeCard recipeId={recipe.id} />
+          </div>
+        );
+      }
+    });
   }
 
   useEffect(() => {

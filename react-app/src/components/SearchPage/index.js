@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { recipeSearch } from "../../store/search";
 import { useHistory } from "react-router-dom";
 import SearchCard from "../SearchCard";
+import DragAndDrop from "../DragAndDrop";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import "./search.css";
 
 export default function SearchPage() {
@@ -34,10 +38,11 @@ export default function SearchPage() {
   return (
     <div className="search__page--container">
       <div className="search__page--left">
-        <form onSubmit={handleSearch} className="search__page--form">
-          <input type="text" value={input} onChange={updateInput} />
-          <button type="submit">Search</button>
-        </form>
+        <div className="searh__page--dnd">
+          <DndProvider backend={HTML5Backend}>
+            <DragAndDrop />
+          </DndProvider>
+        </div>
       </div>
       <div className="search__page--results">{recipes}</div>
     </div>

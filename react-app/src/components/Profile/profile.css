@@ -1,7 +1,7 @@
-html {
+/* html {
   background: url("../images/cutting-board.jpeg") no-repeat center center fixed;
   background-size: cover;
-}
+} */
 
 .profile__user--div {
   display: flex;
@@ -27,7 +27,7 @@ html {
   display: flex;
   align-content: center;
   justify-content: center;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 .profile__recipeBox {

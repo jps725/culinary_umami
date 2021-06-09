@@ -12,12 +12,12 @@ const SearchCard = ({ recipeId }) => {
     return null;
   }
   return (
-    <div className="recipeCard__container">
-      <NavLink to={`/recipe/${recipeId}`} className="recipeCard__navlink">
-        <div className="recipeCard__image--container">
-          <img className="recipeCard__image" src={recipe.image_url} />
+    <div className="searchCard__container">
+      <NavLink to={`/recipe/${recipeId}`} className="searchCard__navlink">
+        <div className="searchCard__image--container">
+          <img className="searchCard__image" src={recipe.image_url} />
         </div>
-        <div className="recipeCard__title">{recipe.title}</div>
+        <div className="searchCard__title">{recipe.title}</div>
       </NavLink>
     </div>
   );

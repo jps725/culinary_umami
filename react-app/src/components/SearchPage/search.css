@@ -1,11 +1,21 @@
-.search__page--container .search__page--results {
+/* .search__page--dnd {
+  width: min-content;
+} */
+.search__page--container {
+  display: flex;
+}
+
+.search__page--results {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .search__page--card {
   display: flex;
   justify-content: center;
-  width: fit-content;
+  flex: 0 0 33.333333%;
 }
