@@ -30,7 +30,7 @@ def seed_bulk_recipes():
             image_url=recipe["image"],
             source_url=recipe["sourceUrl"],
             servings=recipe["servings"],
-            user_id=random.randint(1, 10)
+            user_id=random.randint(1, 5)
         )
         db.session.add(add_recipe)
 
