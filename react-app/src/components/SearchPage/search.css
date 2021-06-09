@@ -1,0 +1,11 @@
+.search__page--container .search__page--results {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.search__page--card {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}

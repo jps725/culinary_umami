@@ -19,7 +19,6 @@ const IngredientInput = ({ idx, returnDetails }) => {
   useEffect(() => {
     returnDetails(idx, { measurement_type, quantity, ingredient });
   }, [measurement_type, quantity, ingredient]);
-
   // useEffect(() => {
   //   ing.push({
   //     quantity: quantity,
