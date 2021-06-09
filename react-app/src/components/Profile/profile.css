@@ -1,7 +1,7 @@
-html {
+/* html {
   background: url("../images/cutting-board.jpeg") no-repeat center center fixed;
   background-size: cover;
-}
+} */
 
 .profile__user--div {
   display: flex;

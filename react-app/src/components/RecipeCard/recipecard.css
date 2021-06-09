@@ -37,7 +37,7 @@
   max-height: 100%;
 }
 
-/* .recipeCard__navlink {
-  display: flex;
-  justify-content: center;
-} */
+.recipeCard__navlink {
+  text-decoration: none;
+  color: black;
+}
