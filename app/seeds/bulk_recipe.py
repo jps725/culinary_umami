@@ -25,9 +25,13 @@ def seed_bulk_recipes():
     recipes = res["recipes"]
 
     for recipe in recipes:
+        if "image" not in recipe:
+            image_url = "https://images.all-free-download.com/images/graphiclarge/cooking_work_painting_male_cook_kitchen_icons_6837554.jpg"
+        else:
+            image_url = recipe["image"]
         add_recipe = Recipe(
             title=recipe["title"],
-            image_url=recipe["image"],
+            image_url=image_url,
             source_url=recipe["sourceUrl"],
             servings=recipe["servings"],
             user_id=random.randint(1, 2)
