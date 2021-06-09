@@ -58,6 +58,14 @@ const RecipeForm = ({ user }) => {
     setIngredients([...ingredients, {}]);
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const idx = e.target.value;
+    console.log(e.target.value);
+    console.log(ingredients[idx]);
+    console.log(ingredients);
+    setIngredients([ingredients.splice(idx, 1)]);
+  };
   // const returnMethods = (idx, methods) => {
   //   setInstructions([
   //     ...instructions.slice(0, idx),
@@ -108,21 +116,29 @@ const RecipeForm = ({ user }) => {
               ></input>
             </div>
           </div>
-          <div className="recipe__ingredient--inputs">
-            {ingredients.map((ingredient, idx) => (
+          {ingredients.map((ingredient, idx) => (
+            <div key={idx} className="recipe__ingredient--inputs">
               <IngredientInput
                 key={idx}
                 idx={idx}
                 returnDetails={returnDetails}
               />
-            ))}
-            <button
-              className="recipe__form--addbutton"
-              onClick={handleAddIngredient}
-            >
-              + Ingredient
-            </button>
-          </div>
+              <button
+                className="ingredient__delete--button"
+                value={idx}
+                onClick={handleDelete}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          <button
+            className="recipe__form--addbutton"
+            onClick={handleAddIngredient}
+          >
+            + Ingredient
+          </button>
+
           <div className="recipe__instruction--container">
             <label>Instructions</label>
             <textarea

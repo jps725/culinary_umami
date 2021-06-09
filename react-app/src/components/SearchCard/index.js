@@ -1,17 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneRecipe } from "../../store/recipe";
 import { NavLink } from "react-router-dom";
 import "./recipecard.css";
 
-const RecipeCard = ({ recipeId }) => {
+const SearchCard = ({ recipeId }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getOneRecipe(recipeId));
-  }, [dispatch, recipeId]);
-
-  const recipe = useSelector((state) => state.recipes[recipeId]);
+  const recipe = useSelector((state) => state.search[recipeId]);
 
   if (!recipe) {
     return null;
@@ -28,4 +23,4 @@ const RecipeCard = ({ recipeId }) => {
   );
 };
 
-export default RecipeCard;
+export default SearchCard;

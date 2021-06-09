@@ -32,11 +32,16 @@ const NavBar = ({ user }) => {
       history.push("/");
     }
   };
+
+  const handleSearch = (e) => {
+    history.push("/search");
+  };
   let actionButtonLogin;
   let actionButtonSignup;
   let actionButtonDemo;
 
   if (user) {
+    actionButtonSignup = <button onClick={handleSearch}>Search</button>;
     actionButtonDemo = <button onClick={handleAdd}>Add Recipe</button>;
     actionButtonLogin = <LogoutButton />;
   } else {
@@ -53,8 +58,8 @@ const NavBar = ({ user }) => {
         </div>
       </div>
       <div className="nav__div">
-        <div className="nav__div--demo">{actionButtonDemo}</div>
         <div className="nav__div--signup">{actionButtonSignup}</div>
+        <div className="nav__div--demo">{actionButtonDemo}</div>
         <div className="nav__div--login">{actionButtonLogin}</div>
       </div>
     </nav>
