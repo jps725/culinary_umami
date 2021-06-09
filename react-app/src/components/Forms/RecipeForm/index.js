@@ -55,28 +55,28 @@ const RecipeForm = ({ user }) => {
 
   const handleAddIngredient = (e) => {
     e.preventDefault();
-    setIngredients([...ingredients, {}]);
+
+    setIngredients([
+      ...ingredients,
+      { quantity: 0, measurement_type: "", ingredient: "" },
+    ]);
   };
 
   const handleDelete = (e) => {
     e.preventDefault();
     const idx = e.target.value;
-    console.log(e.target.value);
-    console.log(ingredients[idx]);
-    console.log(ingredients);
-    setIngredients([ingredients.splice(idx, 1)]);
+
+    console.log(idx);
+
+    console.log(ingredients.splice(idx, 1));
+
+    setIngredients([...ingredients]);
+
+    // setIngredients([
+    //   ...ingredients.slice(0, idx),
+    //   ...ingredients.slice(idx + 1),
+    // ]);
   };
-  // const returnMethods = (idx, methods) => {
-  //   setInstructions([
-  //     ...instructions.slice(0, idx),
-  //     methods,
-  //     ...instructions.slice(idx + 1),
-  //   ]);
-  // };
-  // const handleAddInstruction = (e) => {
-  //   e.preventDefault();
-  //   setInstructions([...instructions, {}]);
-  // };
 
   return (
     <div className="recipe__form">
@@ -111,6 +111,7 @@ const RecipeForm = ({ user }) => {
                 id="recipe__form--servings"
                 type="number"
                 name="servings"
+                min="1"
                 onChange={updateServings}
                 value={servings}
               ></input>
@@ -121,6 +122,7 @@ const RecipeForm = ({ user }) => {
               <IngredientInput
                 key={idx}
                 idx={idx}
+                oldIngredient={ingredient}
                 returnDetails={returnDetails}
               />
               <button

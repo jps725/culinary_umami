@@ -27,7 +27,7 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 .profile__recipeBox {

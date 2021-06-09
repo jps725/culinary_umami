@@ -8,9 +8,9 @@ const style = {
   // border: "2px solid red",
   // backgroundColor: "yellow",
   padding: ".5rem 1rem",
-  margin: "1.5rem",
+  margin: ".75rem",
   height: "2rem",
-  cursor: "move",
+  cursor: "grab",
   float: "left",
   backgroundSize: "cover",
 };
@@ -24,7 +24,8 @@ export const Box = function Box({ name, value, image }) {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
-        alert(`Dropped ${item.name} onto ${dropResult.name}`);
+        // alert(`Dropped ${item.name} onto ${dropResult.name}`);
+
         dispatch(recipeSearch(value));
       }
     },

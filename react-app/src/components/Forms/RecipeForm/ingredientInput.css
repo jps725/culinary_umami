@@ -1,12 +1,38 @@
-#ingredient__input {
+.ingredient__input {
   display: flex;
-  align-content: center;
-  justify-content: center;
-}
-#ingredient__input label {
   font-size: 0.75em;
+  justify-content: center;
+  align-content: center;
+}
+
+.ingredient__input--div {
+  display: flex;
+  height: min-content;
+}
+.ingredient__input--div label {
+  padding: 0.5rem;
 }
 
 .ingredient__input--quantity {
-  width: 2em;
+  width: 3em;
 }
+
+.ingredient__input--quantity::-webkit-inner-spin-button,
+.ingredient__input--quantity::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ingredient__delete--button {
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-family: "Montserrat Alternates", sans-serif;
+  /* padding: 0.8rem; */
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75em;
+  margin-left: 0.5em;
+}
+
+/* .ingredient__input--div input[type] */

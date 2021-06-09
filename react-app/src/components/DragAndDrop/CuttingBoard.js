@@ -1,4 +1,4 @@
-import React from "react";
+import React, { version } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 
@@ -29,7 +29,7 @@ export const CuttingBoard = () => {
     }),
   }));
   const isActive = canDrop && isOver;
-  let background = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)), url(${require(`../images/pexels-henry-&-co-2341290.jpeg`)})`;
+  let background = `linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.05)), url(${require(`../images/pexels-henry-&-co-2341290.jpeg`)})`;
   // if (isActive) {
   //   backgroundColor = "green";
   // } else if (canDrop) {

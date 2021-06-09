@@ -82,3 +82,9 @@
   font-size: 1.2em;
   border-radius: 8px;
 }
+
+#recipe__form--servings::-webkit-inner-spin-button,
+#recipe__form--servings::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

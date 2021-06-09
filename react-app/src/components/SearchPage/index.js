@@ -38,10 +38,6 @@ export default function SearchPage() {
   return (
     <div className="search__page--container">
       <div className="search__page--left">
-        <form onSubmit={handleSearch} className="search__page--form">
-          <input type="text" value={input} onChange={updateInput} />
-          <button type="submit">Search</button>
-        </form>
         <div className="searh__page--dnd">
           <DndProvider backend={HTML5Backend}>
             <DragAndDrop />
