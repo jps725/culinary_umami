@@ -3,6 +3,7 @@ from app.models import (db, Recipe, Ingredient,
 import requests
 import json
 import random
+import os
 
 
 def seed_bulk_recipes():
@@ -10,9 +11,9 @@ def seed_bulk_recipes():
     url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random"
 
     querystring = {"number": "9"}
-
+    API_KEY = os.environ.get('RAPID_API_KEY')
     headers = {
-        'x-rapidapi-key': "e0ffde94b5msh08ecef4a04355ccp150e66jsn0f095809dbf6",
+        'x-rapidapi-key': API_KEY,
         'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
     }
 
