@@ -18,6 +18,7 @@ class Recipe(db.Model):
     ingredients = db.relationship("Ingredient", back_populates="recipe")
     instruction = db.relationship("Instruction", back_populates="recipe")
     comments = db.relationship("Comment", back_populates="recipe")
+    likes = db.relationship("Like", back_populates="recipe")
 
     def to_dict(self):
         return{
@@ -31,7 +32,8 @@ class Recipe(db.Model):
             "instruction": [instruction.to_dict() for
                             instruction in self.instruction],
             "ingredients": [ingredient.to_dict() for
-                            ingredient in self.ingredients]
+                            ingredient in self.ingredients],
+            "likes": [like.to_dict() for like in self.likes]
         }
 
 # add source and url clickable on source

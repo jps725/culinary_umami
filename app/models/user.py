@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
 
     recipes = db.relationship("Recipe", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    likes = db.relationship("Like", back_populates="user")
 
     @property
     def password(self):
@@ -32,5 +33,6 @@ class User(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
             "imageUrl": self.image_url,
-            "recipes": [recipe.to_dict() for recipe in self.recipes]
+            "recipes": [recipe.to_dict() for recipe in self.recipes],
+            "likes": [like.to_dict() for like in self.likes]
         }

@@ -6,16 +6,23 @@
 }
 
 .search__page--results {
+  margin-top: 2em;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  overflow-y: auto;
+  /* height: 800px; */
   width: 100%;
-  margin-top: 2rem;
 }
 
 .search__page--card {
   display: flex;
+  align-content: center;
   justify-content: center;
-  flex: 0 0 33.333333%;
+  margin-bottom: 2rem;
+  /* margin-left: 0.1em; */
+  /* margin-right: 0.1em; */
+  padding: 0.5em;
 }
