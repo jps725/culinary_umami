@@ -1,5 +1,5 @@
 from app.models import (db, Recipe, Ingredient,
-                        Instruction, Measurement_Type)
+                        Instruction, Measurement_Type, Like)
 import requests
 import json
 import random
@@ -10,7 +10,7 @@ def seed_bulk_recipes():
 
     url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random"
 
-    querystring = {"number": "10"}
+    querystring = {"number": "35"}
     API_KEY = os.environ.get('RAPID_API_KEY')
     headers = {
         'x-rapidapi-key': API_KEY,
@@ -34,7 +34,7 @@ def seed_bulk_recipes():
             image_url=image_url,
             source_url=recipe["sourceUrl"],
             servings=recipe["servings"],
-            user_id=random.randint(1, 2)
+            user_id=random.randint(1, 25)
         )
         db.session.add(add_recipe)
 
@@ -70,6 +70,17 @@ def seed_bulk_recipes():
             recipe_id=new_recipe.id
         )
         db.session.add(add_instruction)
+        db.session.commit()
+
+        i = random.randint(10, 200)
+        while i > 0:
+            like = Like(
+                recipe_id=new_recipe.id,
+                user_id=random.randint(1, 25)
+            )
+            db.session.add(like)
+            i -= 1
+
         db.session.commit()
 
 

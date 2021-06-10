@@ -6,7 +6,7 @@ from .instructions import seed_instructions, undo_instructions
 from .measurement_types import seed_measurement_types, undo_measurement_types
 from .recipes import seed_recipes, undo_recipes
 from .bulk_recipe import seed_bulk_recipes, undo_recipe_bulk
-
+from .likes import undo_likes
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -17,6 +17,7 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
+
     # Add other seed functions here
     # seed_recipes()
     # seed_measurement_types()
@@ -32,6 +33,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_likes()
     # Add other undo functions here
     undo_recipes()
     undo_measurement_types()

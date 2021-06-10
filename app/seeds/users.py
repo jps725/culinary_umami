@@ -8,11 +8,11 @@ fake = Faker()
 
 def seed_users():
 
-    # demo = User(username='Demo', email='demo@aa.io',
-    #             password='password',
-    #             image_url="https://www.clipartmax.com/png/small/33-331596_job-profiles-chef-avatar.png")
+    demo = User(username='Demo', email='demo@aa.io',
+                password='password',
+                image_url="https://www.clipartmax.com/png/small/33-331596_job-profiles-chef-avatar.png")
 
-    # db.session.add(demo)
+    db.session.add(demo)
 
     i = 25
 
