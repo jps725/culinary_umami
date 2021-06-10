@@ -10,6 +10,7 @@ import RecipeForm from "./components/Forms/RecipeForm";
 import SingleRecipe from "./components/SingleRecipe";
 import UpdateRecipeForm from "./components/Forms/UpdateRecipeForm";
 import SearchPage from "./components/SearchPage";
+import Footer from "./components/Footer";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -50,6 +51,7 @@ function App() {
           <UpdateRecipeForm user={user} />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
