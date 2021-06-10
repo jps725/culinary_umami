@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneRecipe } from "../../store/recipe";
 import { useParams, NavLink } from "react-router-dom";
 import DeleteFormModal from "../Forms/DeleteFormModal";
+import { loadLikes } from "../../store/like";
+import Likes from "../Likes";
 
 import "./singlerecipe.css";
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const recipeId = id;
+  const recipeId = Number(id);
 
   useEffect(() => {
     dispatch(getOneRecipe(recipeId));
-  }, [dispatch]);
+    dispatch(loadLikes(recipeId));
+  }, [dispatch, recipeId]);
 
   const recipe = useSelector((state) => state.recipes[recipeId]);
   const userId = useSelector((state) => state.session.user.id);
@@ -34,9 +37,16 @@ const SingleRecipe = () => {
     <div className="recipe__page">
       <div className="recipe__container">
         <div className="recipe__title">{recipe.title}</div>
-        <div className="recipe__servings">Servings: {recipe.servings}</div>
-        <div className="recipe__source">
-          <a href={recipe.source_url}>Creator</a>
+        <div className="recipe__subTitle--container">
+          <div className="recipe__subTitle--servingContainer">
+            <div className="recipe__servings">Servings: {recipe.servings}</div>
+            <div className="recipe__source">
+              <a href={recipe.source_url}>Creator</a>
+            </div>
+          </div>
+          <div className="recipe__likes">
+            <Likes userId={userId} recipeId={recipeId} />
+          </div>
         </div>
         <div className="recipe__middle">
           <div className="recipe__image--container">

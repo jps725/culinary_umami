@@ -1,0 +1,16 @@
+.likes__symbol img {
+  width: 2em;
+  cursor: pointer;
+}
+.likes__symbol {
+  padding: 0.5em;
+}
+
+.likes__container {
+  display: flex;
+}
+
+.likes__number--container {
+  display: flex;
+  align-items: center;
+}

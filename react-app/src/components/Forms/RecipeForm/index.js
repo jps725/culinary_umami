@@ -66,9 +66,7 @@ const RecipeForm = ({ user }) => {
     e.preventDefault();
     const idx = e.target.value;
 
-    console.log(idx);
-
-    console.log(ingredients.splice(idx, 1));
+    ingredients.splice(idx, 1);
 
     setIngredients([...ingredients]);
 

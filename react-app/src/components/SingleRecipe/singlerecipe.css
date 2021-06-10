@@ -21,13 +21,41 @@
   width: 60%;
   margin-top: 3em;
 }
-
+.recipe__servings {
+  text-align: center;
+  padding: 0.25em 0.5em;
+}
+.recipe__source {
+  margin: 0.25em;
+  padding: 0.25em 0.75em;
+  border: 1px solid black;
+  text-align: center;
+}
+.recipe__source a {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
 .recipe__title {
   font-size: 2em;
   padding-top: 0.5em;
+  padding-bottom: 0.5em;
   margin-bottom: 0.5em;
+  text-align: center;
+  position: relative;
 }
-
+.recipe__title:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  left: 10%;
+  border-bottom: 2px dotted rgb(113, 113, 113);
+}
+.recipe__subTitle--container {
+  display: flex;
+  justify-content: space-between;
+}
 .recipe__label {
   margin: 0.5em 0;
   font-size: 1.25em;

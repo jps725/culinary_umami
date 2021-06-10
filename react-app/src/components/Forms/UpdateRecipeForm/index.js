@@ -83,6 +83,17 @@ const UpdateRecipeForm = ({ user }) => {
   //   e.preventDefault();
   //   setInstructions([...instructions, {}]);
   // };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const idx = e.target.value;
+    let ing = ingredients.splice(idx, 1);
+    console.log(ing);
+    setIngredients([...ingredients]);
+  };
+
+  useEffect(() => {
+    console.log(ingredients);
+  }, [ingredients]);
 
   if (!recipe) {
     return null;
@@ -126,23 +137,31 @@ const UpdateRecipeForm = ({ user }) => {
               ></input>
             </div>
           </div>
-          <div className="recipe__ingredient--inputs">
-            {ingredients.map((ingredient, idx) => (
+          <div>{ingredients.length}</div>
+          {ingredients.map((ingredient, idx) => (
+            <div key={idx} className="recipe__ingredient--inputs">
               <IngredientInput
                 key={idx}
                 idx={idx}
                 oldIngredient={ingredient}
                 returnDetails={returnDetails}
               />
-            ))}
-            <button
-              className="recipe__form--addbutton"
-              onClick={handleAddIngredient}
-            >
-              + Ingredient
-            </button>
-          </div>
-          <div>
+              <button
+                className="ingredient__delete--button"
+                value={idx}
+                onClick={handleDelete}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          <button
+            className="recipe__form--addbutton"
+            onClick={handleAddIngredient}
+          >
+            + Ingredient
+          </button>
+          <div className="recipe__instruction--container">
             <label>Instructions</label>
             <textarea
               className="recipe__form--input"

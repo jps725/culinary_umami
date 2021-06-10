@@ -18,11 +18,11 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     # Add other seed functions here
-    seed_recipes()
-    seed_measurement_types()
-    seed_ingredients()
-    seed_instructions()
-    seed_comments()
+    # seed_recipes()
+    # seed_measurement_types()
+    # seed_ingredients()
+    # seed_instructions()
+    # seed_comments()
     seed_bulk_recipes()
 
 

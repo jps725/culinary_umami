@@ -35,17 +35,17 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
   //   });
   // }, [quantity, measurement_type, ingredient]);
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    // const idx = e.target.value;
-    // console.log(ingredients);
-    // console.log(idx);
-    // ingredients.splice(idx, 1);
-    // setIngredients([...ingredients]);
-    // console.log(ingredients);
-    console.log(idx);
-    // setIngredients([...ingredients.slice(idx), ...ingredients.slice(idx + 1)]);
-  };
+  // const handleDelete = (e) => {
+  //   e.preventDefault();
+  //   // const idx = e.target.value;
+  //   // console.log(ingredients);
+  //   // console.log(idx);
+  //   // ingredients.splice(idx, 1);
+  //   // setIngredients([...ingredients]);
+  //   // console.log(ingredients);
+  //   console.log(idx);
+  //   // setIngredients([...ingredients.slice(idx), ...ingredients.slice(idx + 1)]);
+  // };
 
   return (
     <div className="ingredient__input">

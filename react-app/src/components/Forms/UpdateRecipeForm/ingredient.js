@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./ingredientInput.css";
+import "./updateingredientInput.css";
 
 const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  // let prevIngredient = oldIngredient;
 
   const [quantity, setQuantity] = useState(oldIngredient.quantity);
   const [measurement_type, setMeasurementType] = useState(
@@ -19,9 +20,32 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
   const updateIngredient = (e) => setIngredient(e.target.value);
   //
   //
+
+  const recipe_id = oldIngredient.recipe_id;
   useEffect(() => {
-    returnDetails(idx, { measurement_type, quantity, ingredient, id });
-  }, [measurement_type, quantity, ingredient, id]);
+    console.log("--------running top use effect-------");
+    if (
+      oldIngredient.measurement_type !== measurement_type ||
+      oldIngredient.quantity !== quantity ||
+      oldIngredient.ingredient !== ingredient
+    ) {
+      console.log("----------inside if------------");
+      returnDetails(idx, {
+        measurement_type,
+        quantity,
+        ingredient,
+        id,
+        recipe_id,
+      });
+    }
+  }, [measurement_type, quantity, ingredient, id, recipe_id]);
+
+  useEffect(() => {
+    console.log("=============================bnaanaannananan");
+    setQuantity(oldIngredient.quantity);
+    setMeasurementType(oldIngredient.measurement_type);
+    setIngredient(oldIngredient.ingredient);
+  }, [oldIngredient]);
 
   // useEffect(() => {
   //   ing.push({
@@ -32,9 +56,10 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
   // }, [quantity, measurement_type, ingredient]);
 
   return (
-    <div id="ingredient__input">
-      <label>Quantity</label>
-      <div>
+    <div className="ingredient__input">
+      <div className="ingredient__input--div">
+        <label>Quantity</label>
+
         <input
           className="ingredient__input--quantity"
           type="number"
