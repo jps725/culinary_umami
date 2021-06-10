@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneRecipe } from "../../store/recipe";
 import { useParams, NavLink } from "react-router-dom";
 import DeleteFormModal from "../Forms/DeleteFormModal";
+import { loadLikes } from "../../store/like";
 import Likes from "../Likes";
 
 import "./singlerecipe.css";
@@ -10,11 +11,12 @@ import "./singlerecipe.css";
 const SingleRecipe = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const recipeId = id;
+  const recipeId = Number(id);
 
   useEffect(() => {
     dispatch(getOneRecipe(recipeId));
-  }, [dispatch]);
+    dispatch(loadLikes(recipeId));
+  }, [dispatch, recipeId]);
 
   const recipe = useSelector((state) => state.recipes[recipeId]);
   const userId = useSelector((state) => state.session.user.id);

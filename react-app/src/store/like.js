@@ -1,6 +1,7 @@
 const ADD_ONE = "like/ADD_ONE";
 const REMOVE_ONE = "like/REMOVE_ONE";
 const LOAD_ALL = "like/LOAD_ALL";
+const LOAD_USER = "like/LOAD_USER";
 
 const addOne = (like) => ({
   type: ADD_ONE,
@@ -17,6 +18,11 @@ const loadAll = (likes) => ({
   likes,
 });
 
+const loadUser = (likes) => ({
+  type: LOAD_USER,
+  likes,
+});
+
 export const loadLikes = (recipeId) => async (dispatch) => {
   const res = await fetch(`/api/likes/${recipeId}`, {
     headers: {
@@ -26,10 +32,22 @@ export const loadLikes = (recipeId) => async (dispatch) => {
   const data = await res.json();
   if (data.errors) {
     return data.errors;
-  } else if (data.length === 0) {
-    return;
   } else {
     dispatch(loadAll(data));
+  }
+};
+
+export const loadUserLikes = (id) => async (dispatch) => {
+  const res = await fetch(`/api/likes/user/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  if (data.errors) {
+    return data.errors;
+  } else {
+    dispatch(loadUser(data));
   }
 };
 
@@ -64,7 +82,7 @@ const initialState = {};
 const likes = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALL: {
-      let newState = { ...state };
+      let newState = {};
       action.likes.forEach((like) => {
         newState[like.user_id] = like;
       });
@@ -80,6 +98,14 @@ const likes = (state = initialState, action) => {
     case REMOVE_ONE: {
       let newState = { ...state };
       delete newState[action.id];
+      return newState;
+    }
+
+    case LOAD_USER: {
+      let newState = {};
+      action.likes.forEach((recipe) => {
+        newState[recipe.id] = recipe;
+      });
       return newState;
     }
 

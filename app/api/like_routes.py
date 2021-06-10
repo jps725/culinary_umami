@@ -31,3 +31,12 @@ def delete_like(id):
     db.session.delete(like)
     db.session.commit()
     return {"id": like.user_id}
+
+
+@like_routes.route("/user/<int:id>")
+def user_likes(id):
+    likes = Like.query.filter(Like.user_id == int(id)).all()
+    recipe_ids = [like.recipe_id for like in likes]
+    recipes = [Recipe.query.get(recipe_id) for recipe_id in recipe_ids]
+
+    return jsonify([recipe.to_dict() for recipe in recipes])

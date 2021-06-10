@@ -7,14 +7,17 @@ import { useParams } from "react-router-dom";
 
 import "./likes.css";
 
-const Likes = ({ recipeId }) => {
+const Likes = () => {
   const dispatch = useDispatch();
   let likes = useSelector((state) => state.likes);
   let userId = useSelector((state) => state.session.user.id);
+  // let recipe = useSelector((state) => state.recipes[recipeId]);
+
   const { id } = useParams();
+  const recipeId = Number(id);
   useEffect(() => {
     dispatch(loadLikes(recipeId));
-  }, [dispatch, likes.length, id]);
+  }, [dispatch, recipeId, likes.length]);
 
   const numLikes = Object.keys(likes).length;
 

@@ -6,7 +6,6 @@ import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage";
 import Profile from "./components/Profile";
 import NavBar from "./components/NavBar";
-// import MenuButton from "./components/MenuButton";
 import RecipeForm from "./components/Forms/RecipeForm";
 import SingleRecipe from "./components/SingleRecipe";
 import UpdateRecipeForm from "./components/Forms/UpdateRecipeForm";
