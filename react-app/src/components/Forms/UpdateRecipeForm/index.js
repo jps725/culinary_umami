@@ -23,8 +23,24 @@ const UpdateRecipeForm = ({ user }) => {
   const [image_url, setImageUrl] = useState("");
   const [instructions, setInstructions] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [deleteFlag, setDeleteFlag] = useState(false);
 
-  // useeffect set states for above based on recipe
+  useEffect(() => {
+    let errors = {};
+    if (title.length < 5) {
+      errors.title = "Title must be more than 5 characters";
+    } else if (title.length > 100) {
+      errors.title = "Title must be less than 100 characters";
+    }
+    if (servings < 1) {
+      errors.servings = "Servings must be more than 0";
+    }
+    if (ingredients.length < 1) {
+      errors.ingredients = "Please add an ingredient";
+    }
+    setErrors(errors);
+  }, [title, servings, ingredients]);
 
   useEffect(() => {
     if (recipe) {
@@ -60,11 +76,15 @@ const UpdateRecipeForm = ({ user }) => {
   };
 
   const returnDetails = (idx, details) => {
-    setIngredients([
-      ...ingredients.slice(0, idx),
-      details,
-      ...ingredients.slice(idx + 1),
-    ]);
+    if (!deleteFlag) {
+      setIngredients([
+        ...ingredients.slice(0, idx),
+        details,
+        ...ingredients.slice(idx + 1),
+      ]);
+    } else {
+      setDeleteFlag(false);
+    }
   };
 
   const handleAddIngredient = (e) => {
@@ -72,28 +92,14 @@ const UpdateRecipeForm = ({ user }) => {
     setIngredients([...ingredients, {}]);
   };
 
-  // const returnMethods = (idx, methods) => {
-  //   setInstructions([
-  //     ...instructions.slice(0, idx),
-  //     methods,
-  //     ...instructions.slice(idx + 1),
-  //   ]);
-  // };
-  // const handleAddInstruction = (e) => {
-  //   e.preventDefault();
-  //   setInstructions([...instructions, {}]);
-  // };
   const handleDelete = (e) => {
     e.preventDefault();
     const idx = e.target.value;
     let ing = ingredients.splice(idx, 1);
     console.log(ing);
     setIngredients([...ingredients]);
+    setDeleteFlag(true);
   };
-
-  useEffect(() => {
-    console.log(ingredients);
-  }, [ingredients]);
 
   if (!recipe) {
     return null;
@@ -107,6 +113,9 @@ const UpdateRecipeForm = ({ user }) => {
           <div className="recipe__form--top">
             <div>
               <label>Title</label>
+              {errors.title && (
+                <div className="recipe__form--error">{errors.title}</div>
+              )}
               <input
                 className="recipe__form--input"
                 type="text"
@@ -117,6 +126,7 @@ const UpdateRecipeForm = ({ user }) => {
             </div>
             <div>
               <label>Image URL</label>
+              {(errors.title || errors.servings) && <div></div>}
               <input
                 className="recipe__form--input"
                 type="text"
@@ -127,6 +137,9 @@ const UpdateRecipeForm = ({ user }) => {
             </div>
             <div>
               <label>Servings</label>
+              {errors.servings && (
+                <div className="recipe__form--error">{errors.servings}</div>
+              )}
               <input
                 className="recipe__form--input"
                 id="recipe__form--servings"
@@ -137,7 +150,9 @@ const UpdateRecipeForm = ({ user }) => {
               ></input>
             </div>
           </div>
-          <div>{ingredients.length}</div>
+          {errors.ingredient && (
+            <div className="recipe__form--error">{errors.ingredient}</div>
+          )}
           {ingredients.map((ingredient, idx) => (
             <div key={idx} className="recipe__ingredient--inputs">
               <IngredientInput
@@ -161,11 +176,10 @@ const UpdateRecipeForm = ({ user }) => {
           >
             + Ingredient
           </button>
-          <div className="recipe__instruction--container">
+          <div className="updaterecipe__instruction--container">
             <label>Instructions</label>
             <textarea
-              className="recipe__form--input"
-              id="recipe__form--servings"
+              className="recipe__form--instruction"
               type="text"
               name="instructions"
               onChange={updateInstructions}
@@ -173,7 +187,11 @@ const UpdateRecipeForm = ({ user }) => {
             ></textarea>
           </div>
           <div className="recipe__form--buttoncontainer">
-            <button className="recipe__form--submit" type="submit">
+            <button
+              className="recipe__form--submit"
+              type="submit"
+              disabled={Object.keys(errors).length}
+            >
               Submit
             </button>
           </div>

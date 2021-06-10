@@ -6,20 +6,13 @@ import SearchCard from "../SearchCard";
 import DragAndDrop from "../DragAndDrop";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { getOneRecipe } from "../../store/recipe";
 
 import "./search.css";
 
 export default function SearchPage() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const updateInput = (e) => setInput(e.target.value);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    dispatch(recipeSearch(input));
-  };
 
   const recipeList = useSelector((state) => Object.values(state.search));
   let recipes = [];
@@ -30,6 +23,8 @@ export default function SearchPage() {
       </div>
     ));
   }
+
+  let noRes;
 
   if (!recipeList) {
     return null;

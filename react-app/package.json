@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "array-move": "^3.0.1",
+    "email-validator": "^2.0.4",
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.0",
     "react-dnd": "^14.0.2",
