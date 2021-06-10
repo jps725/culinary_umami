@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createRecipe } from "../../../store/recipe";
 import IngredientInput from "./ingredient";
-// import InstructionInput from "./instruction";
+
 import "./recipeform.css";
 
 const RecipeForm = ({ user }) => {
@@ -14,6 +14,7 @@ const RecipeForm = ({ user }) => {
   const [image_url, setImageUrl] = useState("");
   const [instructions, setInstructions] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const user_id = user.id;
 
@@ -21,17 +22,9 @@ const RecipeForm = ({ user }) => {
   const updateServings = (e) => setServings(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateInstructions = (e) => setInstructions(e.target.value);
-  // const reset = () => {
-  //   setTitle("");
-  //   setServings(0);
-  //   setImageUrl("");
-  //   setIngredients({});
-  //   setInstruction({});
-  // };
 
   const handleAddRecipe = (e) => {
     e.preventDefault();
-
     const recipe = {
       title,
       servings,
@@ -55,7 +48,6 @@ const RecipeForm = ({ user }) => {
 
   const handleAddIngredient = (e) => {
     e.preventDefault();
-
     setIngredients([
       ...ingredients,
       { quantity: 0, measurement_type: "", ingredient: "" },
@@ -65,16 +57,25 @@ const RecipeForm = ({ user }) => {
   const handleDelete = (e) => {
     e.preventDefault();
     const idx = e.target.value;
-
     ingredients.splice(idx, 1);
-
     setIngredients([...ingredients]);
-
-    // setIngredients([
-    //   ...ingredients.slice(0, idx),
-    //   ...ingredients.slice(idx + 1),
-    // ]);
   };
+
+  useEffect(() => {
+    let errors = {};
+    if (title.length < 5) {
+      errors.title = "Title must be more than 5 characters";
+    } else if (title.length > 100) {
+      errors.title = "Title must be less than 100 characters";
+    }
+    if (servings < 1) {
+      errors.servings = "Servings must be more than 0";
+    }
+    if (ingredients.length < 1) {
+      errors.ingredients = "Please add an ingredient";
+    }
+    setErrors(errors);
+  }, [title, servings, ingredients]);
 
   return (
     <div className="recipe__form">
@@ -84,6 +85,9 @@ const RecipeForm = ({ user }) => {
           <div className="recipe__form--top">
             <div>
               <label>Title</label>
+              {errors.title && (
+                <div className="recipe__form--error">{errors.title}</div>
+              )}
               <input
                 className="recipe__form--input"
                 type="text"
@@ -94,6 +98,7 @@ const RecipeForm = ({ user }) => {
             </div>
             <div>
               <label>Image URL</label>
+              {(errors.title || errors.servings) && <div></div>}
               <input
                 className="recipe__form--input"
                 type="text"
@@ -104,6 +109,9 @@ const RecipeForm = ({ user }) => {
             </div>
             <div>
               <label>Servings</label>
+              {errors.servings && (
+                <div className="recipe__form--error">{errors.servings}</div>
+              )}
               <input
                 className="recipe__form--input"
                 id="recipe__form--servings"
@@ -115,6 +123,9 @@ const RecipeForm = ({ user }) => {
               ></input>
             </div>
           </div>
+          {errors.ingredient && (
+            <div className="recipe__form--error">{errors.ingredient}</div>
+          )}
           {ingredients.map((ingredient, idx) => (
             <div key={idx} className="recipe__ingredient--inputs">
               <IngredientInput
@@ -150,7 +161,11 @@ const RecipeForm = ({ user }) => {
             ></textarea>
           </div>
           <div className="recipe__form--buttoncontainer">
-            <button className="recipe__form--submit" type="submit">
+            <button
+              className="recipe__form--submit"
+              type="submit"
+              disabled={Object.keys(errors).length}
+            >
               Submit
             </button>
           </div>

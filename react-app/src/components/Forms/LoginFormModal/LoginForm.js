@@ -40,7 +40,7 @@ const LoginForm = () => {
           <legend>Login</legend>
           <div>
             {errors.map((error) => (
-              <div>{error}</div>
+              <div classNam="login__form--error">{error}</div>
             ))}
           </div>
           <div>

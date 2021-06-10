@@ -21,7 +21,7 @@ export const authenticate = () => async (dispatch) => {
   });
   const data = await response.json();
   if (data.errors) {
-    return;
+    return data;
   }
 
   dispatch(setUser(data));

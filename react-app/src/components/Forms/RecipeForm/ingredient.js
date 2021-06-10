@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import "./ingredientInput.css";
 
 const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
   const [quantity, setQuantity] = useState(oldIngredient.quantity);
   const [measurement_type, setMeasurementType] = useState(
     oldIngredient.measurement_type
   );
   const [ingredient, setIngredient] = useState(oldIngredient.ingredient);
-  //   const [ingredients, setIngredients] = useState([]);
+  const [errors, setErrors] = useState({});
+
   const updateQuantity = (e) => setQuantity(e.target.value);
   const updateMeasurementType = (e) => setMeasurementType(e.target.value);
   const updateIngredient = (e) => setIngredient(e.target.value);
-  //
-  //
+
   useEffect(() => {
     returnDetails(idx, { measurement_type, quantity, ingredient });
   }, [measurement_type, quantity, ingredient]);
@@ -27,30 +22,29 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
     setMeasurementType(oldIngredient.measurement_type);
     setIngredient(oldIngredient.ingredient);
   }, [oldIngredient]);
-  // useEffect(() => {
-  //   ing.push({
-  //     quantity: quantity,
-  //     measurement_type: measurement_type,
-  //     ingredient: ingredient,
-  //   });
-  // }, [quantity, measurement_type, ingredient]);
 
-  // const handleDelete = (e) => {
-  //   e.preventDefault();
-  //   // const idx = e.target.value;
-  //   // console.log(ingredients);
-  //   // console.log(idx);
-  //   // ingredients.splice(idx, 1);
-  //   // setIngredients([...ingredients]);
-  //   // console.log(ingredients);
-  //   console.log(idx);
-  //   // setIngredients([...ingredients.slice(idx), ...ingredients.slice(idx + 1)]);
-  // };
+  useEffect(() => {
+    let errors = {};
+    if (quantity < 0) {
+      errors.quantity = "Quantity must be more that 0";
+    }
+    if (!measurement_type) {
+      errors.measurement_type = "Please enter a unit type";
+    }
+    if (!ingredient) {
+      errors.ingredient = "Please enter an ingredient";
+    }
+    setErrors(errors);
+  }, [quantity, measurement_type, ingredient]);
 
   return (
     <div className="ingredient__input">
       <div className="ingredient__input--div">
         <label>Amount</label>
+        {errors.quantity && (
+          <div className="recipe__form--error">{errors.quantity}</div>
+        )}
+        {(errors.measurement_type || errors.name) && <div></div>}
         <input
           className="ingredient__input--quantity"
           type="number"
@@ -62,6 +56,9 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
       </div>
       <div className="ingredient__input--div">
         <label>Unit</label>
+        {errors.measurement_type && (
+          <div className="recipe__form--error">{errors.measurement_type}</div>
+        )}
         <input
           type="text"
           name="measurement_type"
@@ -71,6 +68,9 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
       </div>
       <div className="ingredient__input--div">
         <label>Name</label>
+        {errors.ingredient && (
+          <div className="recipe__form--error">{errors.ingredient}</div>
+        )}
         <input
           type="text"
           name="ingredient"
@@ -78,13 +78,6 @@ const IngredientInput = ({ idx, returnDetails, oldIngredient }) => {
           value={ingredient}
         ></input>
       </div>
-      {/* <button
-        className="ingredient__delete--button"
-        value={idx}
-        onClick={handleDelete}
-      >
-        X
-      </button> */}
     </div>
   );
 };

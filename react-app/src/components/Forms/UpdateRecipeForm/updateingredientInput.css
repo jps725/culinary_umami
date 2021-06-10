@@ -1,10 +1,18 @@
 .ingredient__input {
   display: flex;
   font-size: 0.75em;
-  justify-content: center;
-  align-content: center;
+  align-content: space-evenly;
 }
-
+.ingredient__input input {
+  height: 2em;
+}
+.ingredient__input div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em;
+}
 .ingredient__input--div {
   display: flex;
   height: min-content;
@@ -14,7 +22,7 @@
 }
 
 .ingredient__input--quantity {
-  width: 3em;
+  width: 2em;
 }
 
 .ingredient__input--quantity::-webkit-inner-spin-button,
@@ -22,17 +30,3 @@
   -webkit-appearance: none;
   margin: 0;
 }
-
-.ingredient__delete--button {
-  background-color: transparent;
-  border: 1px solid black;
-  cursor: pointer;
-  font-family: "Montserrat Alternates", sans-serif;
-  /* padding: 0.8rem; */
-  font-size: 1rem;
-  border-radius: 8px;
-  margin-bottom: 0.75em;
-  margin-left: 0.5em;
-}
-
-/* .ingredient__input--div input[type] */
