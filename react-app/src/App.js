@@ -11,6 +11,7 @@ import SingleRecipe from "./components/SingleRecipe";
 import UpdateRecipeForm from "./components/Forms/UpdateRecipeForm";
 import SearchPage from "./components/SearchPage";
 import Footer from "./components/Footer";
+import SearchProvider from "./context/SearchContext";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -39,7 +40,9 @@ function App() {
           <SingleRecipe />
         </Route>
         <Route path="/search">
-          <SearchPage />
+          <SearchProvider>
+            <SearchPage />
+          </SearchProvider>
         </Route>
         <ProtectedRoute path="/profile" exact={true}>
           <Profile user={user} />
@@ -50,6 +53,9 @@ function App() {
         <Route path="/editrecipe/:id" exact={true}>
           <UpdateRecipeForm user={user} />
         </Route>
+        {/* <Route>
+          <Error />
+        </Route> */}
       </Switch>
       <Footer />
     </BrowserRouter>

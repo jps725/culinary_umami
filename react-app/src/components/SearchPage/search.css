@@ -3,8 +3,19 @@
 } */
 .search__page--container {
   display: flex;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
+.search__page--message {
+  font-size: 1.5em;
+  padding: 0.5em;
+  text-align: center;
+  background-color: rgb(230, 230, 230, 0.95);
+  color: #073b4c;
+  margin-top: 1em;
+  border-radius: 8px;
+  box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.45);
+}
 .search__page--results {
   margin-top: 2em;
   display: flex;

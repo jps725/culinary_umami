@@ -1,19 +1,29 @@
-import React, { useState, useEffect, useImperativeHandle } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { recipeSearch } from "../../store/search";
+import search, { recipeSearch } from "../../store/search";
 import { useHistory } from "react-router-dom";
 import SearchCard from "../SearchCard";
 import DragAndDrop from "../DragAndDrop";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { getOneRecipe } from "../../store/recipe";
+import { useSearchValue } from "../../context/SearchContext";
 
 import "./search.css";
 
 export default function SearchPage() {
-  const [input, setInput] = useState("");
   const dispatch = useDispatch();
-
+  const { searchValue } = useSearchValue();
+  let searchDiv = (
+    <div className="search__page--message">
+      Search for Recipes by Ingredient
+    </div>
+  );
+  if (searchValue) {
+    searchDiv = (
+      <div className="search__page--message">Searched for - {searchValue}</div>
+    );
+  }
   const recipeList = useSelector((state) => Object.values(state.search));
   let recipes = [];
   if (recipeList) {
@@ -24,8 +34,6 @@ export default function SearchPage() {
     ));
   }
 
-  let noRes;
-
   if (!recipeList) {
     return null;
   }
@@ -33,6 +41,7 @@ export default function SearchPage() {
   return (
     <div className="search__page--container">
       <div className="search__page--left">
+        {searchDiv}
         <div className="searh__page--dnd">
           <DndProvider backend={HTML5Backend}>
             <DragAndDrop />

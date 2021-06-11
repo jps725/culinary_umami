@@ -17,12 +17,22 @@
   /* margin-bottom: 0.5em; */
   text-align: center;
 }
+/* .searchCard__likes {
+  text-align: center;
+  margin-bottom: 1em;
+  background-color: rgb(230, 230, 230);
+  border-radius: 8px;
+  width: 5%;
+  position: absolute;
+  bottom: 4em;
+} */
 
 /*************************Images******************************/
 
 .searchCard__image--container {
   display: flex;
   max-width: 100%;
+
   align-content: center;
 }
 .searchCard__image {

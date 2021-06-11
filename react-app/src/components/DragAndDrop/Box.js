@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { recipeSearch } from "../../store/search";
 import { useDispatch } from "react-redux";
+import { useSearchValue } from "../../context/SearchContext";
 
 const style = {
   // border: "2px solid red",
@@ -17,6 +18,7 @@ const style = {
 
 export const Box = function Box({ name, value, image }) {
   const dispatch = useDispatch();
+  const { searchValue, setSearchValue } = useSearchValue();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
     item: { name },
@@ -25,7 +27,7 @@ export const Box = function Box({ name, value, image }) {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
         // alert(`Dropped ${item.name} onto ${dropResult.name}`);
-
+        setSearchValue(value);
         dispatch(recipeSearch(value));
       }
     },
