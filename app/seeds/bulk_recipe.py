@@ -10,7 +10,7 @@ def seed_bulk_recipes():
 
     url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random"
 
-    querystring = {"number": "35"}
+    querystring = {"number": "100"}
     API_KEY = os.environ.get('RAPID_API_KEY')
     headers = {
         'x-rapidapi-key': API_KEY,
@@ -72,7 +72,7 @@ def seed_bulk_recipes():
         db.session.add(add_instruction)
         db.session.commit()
 
-        i = random.randint(10, 200)
+        i = random.randint(1, 30)
         while i > 0:
             like = Like(
                 recipe_id=new_recipe.id,
