@@ -28,11 +28,11 @@ Live Site - [Culinary-Umami](https://culinary-umami.herokuapp.com/)
 
 ## Main Page:
 
-![main-page-gif](https://i.gyazo.com/eadf06eedbb86b689d5e4d3e4d8bcff8.gif | width="200")
+![main-page-gif](https://i.gyazo.com/eadf06eedbb86b689d5e4d3e4d8bcff8.gif width="200px")
 
 ## Drag and Drop Search:
 
-![search-page-gif](https://i.gyazo.com/f2bfe67bb4e97719672b35a0c368501d.gif | width="200")
+![search-page-gif](https://i.gyazo.com/f2bfe67bb4e97719672b35a0c368501d.gif width="200px")
 
 ## React Dynamic handling of rendering additional input components for the form
 
