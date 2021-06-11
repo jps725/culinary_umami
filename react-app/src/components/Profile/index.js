@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import RecipeCard from "../RecipeCard";
 import { getUserRecipes } from "../../store/recipe";
 
@@ -8,7 +7,6 @@ import "./profile.css";
 
 const Profile = ({ user }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const recipeList = useSelector((state) => Object.values(state.recipes));
   let recipes = [];
@@ -21,12 +19,13 @@ const Profile = ({ user }) => {
           </div>
         );
       }
+      return null;
     });
   }
 
   useEffect(() => {
     dispatch(getUserRecipes(user.id));
-  }, [dispatch, recipes.length]);
+  }, [dispatch, recipes.length, user.id]);
 
   if (!recipeList) {
     return null;
@@ -34,7 +33,11 @@ const Profile = ({ user }) => {
   return (
     <div>
       <div className="profile__user--div">
-        <img className="profile__user--img" src={user.imageUrl} />
+        <img
+          className="profile__user--img"
+          alt="user profile"
+          src={user.imageUrl}
+        />
         <div className="profile__user--name">{user.username}</div>
       </div>
       <div className="profile__recipeBox--container">

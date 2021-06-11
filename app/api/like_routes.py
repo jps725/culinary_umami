@@ -27,9 +27,12 @@ def all_likes(id):
 
 @like_routes.route("/<int:id>", methods=['DELETE'])
 def delete_like(id):
+    # print("=============", id)
     like = Like.query.get(int(id))
+    # print("--------------", like)
     db.session.delete(like)
     db.session.commit()
+    # print("====+++++++++", like.user_id)
     return {"id": like.user_id}
 
 

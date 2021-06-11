@@ -20,7 +20,11 @@ const RecipeCard = ({ recipeId }) => {
     <div className="recipeCard__container">
       <NavLink to={`/recipe/${recipeId}`} className="recipeCard__navlink">
         <div className="recipeCard__image--container">
-          <img className="recipeCard__image" src={recipe.image_url} />
+          <img
+            className="recipeCard__image"
+            alt="recipe item"
+            src={recipe.image_url}
+          />
         </div>
         <div className="recipeCard__title">{recipe.title}</div>
       </NavLink>

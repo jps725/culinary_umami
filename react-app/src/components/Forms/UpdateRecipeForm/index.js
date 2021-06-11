@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateRecipe, getOneRecipe } from "../../../store/recipe";
 import IngredientInput from "./ingredient";
-// import InstructionInput from "./instruction";
 import "./updaterecipeform.css";
 
 const UpdateRecipeForm = ({ user }) => {
@@ -14,7 +13,7 @@ const UpdateRecipeForm = ({ user }) => {
 
   useEffect(() => {
     dispatch(getOneRecipe(recipeId));
-  }, [dispatch]);
+  }, [dispatch, recipeId]);
 
   const recipe = useSelector((state) => state.recipes[recipeId]);
 
@@ -95,9 +94,13 @@ const UpdateRecipeForm = ({ user }) => {
   const handleDelete = (e) => {
     e.preventDefault();
     const idx = e.target.value;
-    let ing = ingredients.splice(idx, 1);
-    console.log(ing);
+    ingredients.splice(idx, 1);
     setIngredients([...ingredients]);
+    // dispatch(deleteIngredient(id));
+    // console.log(ingId);
+    // if (ingId) {
+    //   dispatch(deleteIngredient(ingId));
+
     setDeleteFlag(true);
   };
 

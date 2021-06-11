@@ -1,17 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteRecipe, getUserRecipes } from "../../../store/recipe";
+import { deleteRecipe } from "../../../store/recipe";
 import { useHistory } from "react-router-dom";
 
 import "./deleteform.css";
 
-const DeleteForm = ({ recipeId, userId }) => {
+const DeleteForm = ({ recipeId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleDelete = () => {
     dispatch(deleteRecipe(recipeId));
-    // dispatch(getUserRecipes(userId));
     history.push("/profile");
   };
 

@@ -104,7 +104,6 @@ def update_recipe():
     if request.method == 'PUT':
         if request.cookies['csrf_token']:
             data = request.json
-
             recipe = Recipe.query.get(int(data['id']))
 
             if data['image_url'] == "":
@@ -119,8 +118,19 @@ def update_recipe():
             db.session.add(recipe)
             db.session.commit()
 
-            for ingredient in data['ingredients']:
+            ingredients = Ingredient.query.filter(
+                Ingredient.recipe_id == data['id'])
+            ing_id_list = [ing.id for ing in ingredients]
 
+            new_ing_list = [new_ing['id'] for new_ing in data['ingredients']]
+
+            for ing_id in ing_id_list:
+                if ing_id not in new_ing_list:
+                    del_ing = Ingredient.query.get(ing_id)
+                    db.session.delete(del_ing)
+                    db.session.commit()
+
+            for ingredient in data['ingredients']:
                 if 'id' not in ingredient:
                     measurement_type = Measurement_Type.query.filter_by(
                         measurement_type=ingredient['measurement_type']

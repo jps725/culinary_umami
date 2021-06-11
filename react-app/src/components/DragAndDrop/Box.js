@@ -18,7 +18,7 @@ const style = {
 
 export const Box = function Box({ name, value, image }) {
   const dispatch = useDispatch();
-  const { searchValue, setSearchValue } = useSearchValue();
+  const { setSearchValue } = useSearchValue();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
     item: { name },

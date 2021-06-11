@@ -50,7 +50,7 @@ const SingleRecipe = () => {
         </div>
         <div className="recipe__middle">
           <div className="recipe__image--container">
-            <img className="recipe__image" src={recipe.image_url} />
+            <img className="recipe__image" alt="food" src={recipe.image_url} />
           </div>
           <div className="recipe__ingredients">
             <div className="recipe__label">Ingredients</div>
