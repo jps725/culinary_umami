@@ -1,98 +1,127 @@
-# Flask React Project
+# Culinary Umami
 
-This is the backend for the Flask React project.
+Culinary Umami is a recipe search, share, and management app. User can create new recipes, like recipes, and dynamically search the entire database by ingredient.
 
-## Getting started
+Live Site - [Culinary-Umami](https://culinary-umami.herokuapp.com/)
 
-1. Clone this repository (only this branch)
+## Technologies Used:
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+    * Python
+    * Flask
+    * SQLAlchemy
+    * HTML
+    * CSS
+    * Javascript
+    * React
+    * Redux
+    * Postgres
 
-2. Install dependencies
+## Features and Functionality:
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+    * User Authentication - Users are able to securely sign-up, log-in, or use demo to test functionality.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+    * Recipes - A user may create, edit, or delete a recipe they have created.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+    * Likes - A user may make like any recipe or remove their like from a previously liked recipe.
 
-   ```bash
-   pipenv shell
-   ```
+    * Search - A user may utilize the drag and drop search to filter recipes from the database by ingredient.
 
-   ```bash
-   flask db upgrade
-   ```
+## Main Page:
 
-   ```bash
-   flask seed all
-   ```
+![main-page-gif](https://i.gyazo.com/eadf06eedbb86b689d5e4d3e4d8bcff8.gif)
 
-   ```bash
-   flask run
-   ```
+## Drag and Drop Search:
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+![search-page-gif](https://i.gyazo.com/f2bfe67bb4e97719672b35a0c368501d.gif)
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+## React Dynamic handling of rendering additional input components for the form
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+```
+        const returnDetails = (idx, details) => {
+            setIngredients([
+            ...ingredients.slice(0, idx),
+            details,
+            ...ingredients.slice(idx + 1),
+            ]);
+        };
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+        const handleAddIngredient = (e) => {
+            e.preventDefault();
+            setIngredients([
+            ...ingredients,
+            { quantity: 0, measurement_type: "", ingredient: "" },
+            ]);
+        };
 
-## Deploy to Heroku
+        const handleDelete = (e) => {
+            e.preventDefault();
+            const idx = e.target.value;
+            ingredients.splice(idx, 1);
+            setIngredients([...ingredients]);
+        };
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+     {ingredients.map((ingredient, idx) => (
+            <div key={idx} className="recipe__ingredient--inputs">
+              <IngredientInput
+                key={idx}
+                idx={idx}
+                oldIngredient={ingredient}
+                returnDetails={returnDetails}
+              />
+              <button
+                className="ingredient__delete--button"
+                value={idx}
+                onClick={handleDelete}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          <button
+            className="recipe__form--addbutton"
+            onClick={handleAddIngredient}
+          >
+            + Ingredient
+          </button>
+```
 
-   ```bash
-   heroku login
-   ```
+## Backend conditional add of measurement type to the database
 
-5. Login to the heroku container registry
+```
+     for added_ingredient in recipe['ingredients']:
+                measurement_type = Measurement_Type.query.filter_by(
+                    measurement_type=added_ingredient['measurement_type']
+                ).first()
 
-   ```bash
-   heroku container:login
-   ```
+                if not measurement_type:
+                    new_measurement_type = Measurement_Type(
+                        measurement_type=added_ingredient['measurement_type']
+                    )
+                    db.session.add(new_measurement_type)
+                    db.session.commit()
+                    measurement_type = Measurement_Type.query.filter_by(
+                        measurement_type=added_ingredient['measurement_type']
+                    ).first()
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+                new_ingredient = Ingredient(
+                    ingredient=added_ingredient['ingredient'],
+                    quantity=float(added_ingredient['quantity']),
+                    recipe_id=added_recipe.id,
+                    measurement_type_id=measurement_type.id
+                )
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+                db.session.add(new_ingredient)
+                db.session.commit()
+```
 
-8. Release your docker container to heroku
+## Future Features:
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+    * Recommendation engine to generate a list of recommended recipes based on recipe likes, and weighing the ingredients and cuisine to search and display.
 
-9. set up your database:
+    * Random recipe generator based on inputs of ingredients, cuisine, season.
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
+    * Comments, a user can add a comment to any recipe.
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
+## Review Wiki Pages for more information and documentation
 
-11. profit
+[Wiki](https://github.com/jps725/culinary_umami/wiki)

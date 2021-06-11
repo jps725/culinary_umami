@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SearchCard from "../SearchCard";
 import DragAndDrop from "../DragAndDrop";
@@ -26,17 +26,21 @@ export default function SearchPage() {
       </div>
     ));
   }
+
   if (searchValue) {
     searchDiv = (
       <div className="search__page--message">Searched for - {searchValue}</div>
     );
-    if (recipes.length === 0) {
-      noResult = (
-        <div className="search__page--message">
-          Oops! It looks like we don't have any recipes with {searchValue}
-        </div>
-      );
-    }
+  }
+
+  let search = useSelector((state) => state.search);
+
+  if (searchValue && Object.keys(search).length === 0) {
+    searchDiv = (
+      <div className="search__page--message">
+        Oops! It looks like we don't have any recipes with {searchValue}
+      </div>
+    );
   }
 
   if (!recipeList) {
