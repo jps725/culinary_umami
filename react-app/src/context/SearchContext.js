@@ -5,9 +5,12 @@ export const useSearchValue = () => useContext(SearchContext);
 
 export default function SearchProvider(props) {
   const [searchValue, setSearchValue] = useState(null);
+  const [searchFlag, setSearchFlag] = useState(false);
 
   return (
-    <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+    <SearchContext.Provider
+      value={{ searchValue, setSearchValue, searchFlag, setSearchFlag }}
+    >
       {props.children}
     </SearchContext.Provider>
   );

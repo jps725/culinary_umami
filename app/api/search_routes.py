@@ -23,6 +23,10 @@ def search():
             if recipe['id'] not in recipe_dict:
                 recipe_dict[recipe['id']] = recipe
 
+    if len(recipe_dict) == 0:
+        return {"title": "Oops we don't seem to have any recipes with that ingredient.",
+                "id": 0, "image_url": "https://pixabay.com/get/g221cb4b42bc0281c48474d355324f8861a34ac5a47b411938b27e8069f7dd545d3e262d7aa210280c22cbc2d3598b413_640.png"}
+
     return recipe_dict
     #  recipes_title = Recipe.query.filter(
     #     Recipe.title.ilike(f'%{string}%')).limit(10)

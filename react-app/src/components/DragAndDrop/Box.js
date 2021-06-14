@@ -18,7 +18,7 @@ const style = {
 
 export const Box = function Box({ name, value, image }) {
   const dispatch = useDispatch();
-  const { setSearchValue } = useSearchValue();
+  const { setSearchValue, setSearchFlag } = useSearchValue();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
     item: { name },
@@ -28,7 +28,9 @@ export const Box = function Box({ name, value, image }) {
       if (item && dropResult) {
         // alert(`Dropped ${item.name} onto ${dropResult.name}`);
         setSearchValue(value);
+        // setSearchFlag(true);
         dispatch(recipeSearch(value));
+        // setSearchFlag(false);
       }
     },
     collect: (monitor) => ({

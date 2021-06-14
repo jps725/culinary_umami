@@ -32,7 +32,7 @@ Live Site - [Culinary-Umami](https://culinary-umami.herokuapp.com/)
 
 ## Drag and Drop Search:
 
-<img src="./images/search.gif" width="300px">
+<img src="./images/search2.gif" width="300px">
 
 ## React Dynamic handling of rendering additional input components for the form
 
