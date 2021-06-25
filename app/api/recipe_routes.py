@@ -158,26 +158,20 @@ def update_recipe():
                 else:
                     edit_ingredient = Ingredient.query.get(
                         int(ingredient['id']))
+
                     measurement_type = Measurement_Type.query.filter_by(
                         measurement_type=ingredient['measurement_type']
                     ).first()
-                    if (ingredient['measurement_type'] !=
-                            measurement_type.measurement_type):
 
+                    if not measurement_type:
+                        new_measurement_type = Measurement_Type(
+                            measurement_type=ingredient['measurement_type']
+                        )
+                        db.session.add(new_measurement_type)
+                        db.session.commit()
                         measurement_type = Measurement_Type.query.filter_by(
                             measurement_type=ingredient['measurement_type']
                         ).first()
-                        if not measurement_type:
-                            new_measurement_type = Measurement_Type(
-                                measurement_type=ingredient[
-                                    'measurement_type']
-                            )
-                            db.session.add(new_measurement_type)
-                            db.session.commit()
-                            measurement_type = Measurement_Type.query.filter_by(
-                                measurement_type=ingredient[
-                                    'measurement_type']
-                            ).first()
 
                     edit_ingredient.ingredient = ingredient['ingredient'],
                     edit_ingredient.quantity = float(ingredient['quantity']),
@@ -188,26 +182,17 @@ def update_recipe():
 
             if 'id' not in data['instructions']:
                 instruction = Instruction(
-                    # step_number=int(new_instruction['step_number']),
+
                     method=data["instructions"],
                     recipe_id=recipe.id
                 )
                 db.session.add(instruction)
                 db.session.commit()
 
-                # new_instruction = Instruction(
-                #     # step_number=int(instruction['step_number']),
-                #     method=instruction['method'],
-                #     recipe_id=recipe.id
-                # )
-                # db.session.add(new_instruction)
-                # db.session.commit()
             else:
                 edit_instruction = Instruction.query.get(
                     int(instruction['id']))
 
-                # edit_instruction.step_number = int(
-                #     instruction['step_number']),
                 edit_instruction.method = instruction['method'],
 
                 db.session.add(edit_instruction)
