@@ -25,7 +25,7 @@ def search():
 
     if len(recipe_dict) == 0:
         return {"title": "Oops we don't seem to have any recipes with that ingredient.",
-                "id": 0, "image_url": "https://ibb.co/LkjkcZf"}
+                "id": 0, "image_url": "https://i.ibb.co/r787zwJ/detective-1424831-640.png"}
 
     return recipe_dict
     #  recipes_title = Recipe.query.filter(
