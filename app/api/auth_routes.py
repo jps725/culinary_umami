@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.seeds import new_user_recipes
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -72,6 +73,8 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
+
+        new_user_recipes(user.id)
 
         login_user(user)
         return user.to_dict()
